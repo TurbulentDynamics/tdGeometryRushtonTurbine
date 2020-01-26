@@ -52,31 +52,6 @@ extension float4x4 {
                   simd_float4( 0,  0, wz,  1))
     }
     
-    init(eulerAngles: simd_float3) {
-        let rx = float4x4(
-            simd_float4(1, 0, 0, 0),
-            simd_float4(0, cosf(eulerAngles.x), -sinf(eulerAngles.x), 0),
-            simd_float4(0, sinf(eulerAngles.x), cosf(eulerAngles.x), 0),
-            simd_float4(0, 0, 0, 1)
-        )
-        
-        let ry = float4x4(
-            simd_float4(cos(eulerAngles.y), 0, sin(eulerAngles.y), 0),
-            simd_float4(0, 1, 0, 0),
-            simd_float4(-sin(eulerAngles.y), 0, cos(eulerAngles.y), 0),
-            simd_float4(0, 0, 0, 1)
-        )
-        
-        let rz = float4x4(
-            simd_float4(cos(eulerAngles.z), -sin(eulerAngles.z), 0, 0),
-            simd_float4(sin(eulerAngles.z), cos(eulerAngles.z), 0, 0),
-            simd_float4(0, 0, 1, 0),
-            simd_float4(0, 0, 0, 1)
-        )
-        
-        self.init(rz * ry * rx)
-    }
-    
     var normalMatrix: float3x3 {
         let upperLeft = float3x3(self[0].xyz, self[1].xyz, self[2].xyz)
         return upperLeft.transpose.inverse
