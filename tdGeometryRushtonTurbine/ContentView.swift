@@ -15,7 +15,7 @@ struct ContentView: View {
     #if targetEnvironment(macCatalyst)
     var body: some View {
         NavigationView {
-            ControlView(control: engine.controlModel)
+            ControlView(engine: engine)
             RenderView(engine: engine)
         }
     }
@@ -43,7 +43,7 @@ struct TabBarView: View {
     var body: some View {
         TabView() {
             NavigationView {
-                ControlView(control: engine.controlModel)
+                ControlView(engine: engine)
             }.tabItem {
                 self.tabItem(text: "Control")
             }.tag(Tab.control)

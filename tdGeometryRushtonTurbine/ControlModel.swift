@@ -21,16 +21,16 @@ class ControlModel {
         self.tankSection = SectionModel(title: "Tank", fields: [
             InputFieldModel(title: "Diameter", inputBlock: {
                 return String(state.tankDiameter)
-            }, outputBlock: { value in callback.send(state.changeValues(tankDiameter: Float(value))) }),
+            }, outputBlock: { callback.send(state.changeValues(tankDiameter: Float($0))) }),
             InputFieldModel(title: "Height", inputBlock: {
                 return String(state.tankHeight)
-            }, outputBlock: { _ in })
+            }, outputBlock: { callback.send(state.changeValues(tankHeight: Float($0))) })
         ])
 
         self.shaftSection = SectionModel(title: "Shaft", fields: [
             InputFieldModel(title: "Radius", inputBlock: {
                 return String(state.shaftRadius)
-            }, outputBlock: { _ in })
+            }, outputBlock: { callback.send(state.changeValues(shaftRadius: Float($0))) })
         ])
 
         self.baffleSection = SectionModel(title: "Baffle", fields: [
@@ -51,7 +51,7 @@ class ControlModel {
         self.impellerCountSection = SectionModel(title: "Impeller Count", fields: [
             InputFieldModel(title: "Count", inputBlock: {
                 return String(state.impellerCount)
-            }, outputBlock: { value in callback.send(state.changeValues(tankDiameter: Float(value))) })
+            }, outputBlock: { callback.send(state.changeValues(impellerCount: Int($0))) })
         ])
 
         var array = [ImpellerSectionModel]()

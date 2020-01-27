@@ -29,7 +29,9 @@ class Engine: NSObject, ObservableObject {
     private var transPanMeshYZ = SCNNode()
     private var transPanMeshXZ = SCNNode()
     private var transPanMeshCenter = SCNNode()
-    
+
+    private let semaphore = DispatchSemaphore(value: 1)
+
     private var s: AnyCancellable?
 
     override init() {
@@ -75,6 +77,7 @@ class Engine: NSObject, ObservableObject {
         s = callback.sink { [weak self] value in
             if let this = self {
                 this.controlModel = ControlModel(state: value, callback: this.callback)
+                this.state = value
                 this.createScene()
             }
         }
@@ -107,7 +110,7 @@ class Engine: NSObject, ObservableObject {
         createScene()
     }
 
-    func update() {
+    private func update() {
         switch state.kernelRotationDir {
         case "clockwise":
             kernelAngle = (kernelAngle + 1) % 360
@@ -125,7 +128,10 @@ class Engine: NSObject, ObservableObject {
     }
     
     private func createScene() {
+        SCNTransaction.lock()
+
         let array = scene.rootNode.childNodes
+        // camera, light, shadow light #1, shadow light #2, shadow light #3
         for i in 5..<array.count {
             array[i].removeFromParentNode()
         }
@@ -147,6 +153,8 @@ class Engine: NSObject, ObservableObject {
         updateBaffles(baffleInnerRadius: state.baffleInnerRadius, baffleOuterRadius: state.baffleOuterRadius)
 
         createTransPan(d: state.tankDiameter, h: state.tankHeight)
+
+        SCNTransaction.unlock()
     }
 
     private func createShadowLight(x: Float, y: Float, z: Float) {
@@ -370,13 +378,13 @@ struct TurbineState {
     var transEnableImpeller: Bool
     var transEnableRotate: Bool
     
-    func changeValues(tankDiameter: Float? = nil, impellerCount: Int? = nil) -> TurbineState {
+    func changeValues(tankDiameter: Float? = nil, tankHeight: Float? = nil, shaftRadius: Float? = nil, impellerCount: Int? = nil) -> TurbineState {
         return TurbineState(
             canvasWidth: self.canvasWidth,
             canvasHeight: self.canvasHeight,
             tankDiameter: tankDiameter ?? self.tankDiameter,
-            tankHeight: self.tankHeight,
-            shaftRadius: self.shaftRadius,
+            tankHeight: tankHeight ?? self.tankHeight,
+            shaftRadius: shaftRadius ?? self.shaftRadius,
             kernelAutoRotation: self.kernelAutoRotation,
             kernelRotationDir: self.kernelRotationDir,
             baffleCount: self.baffleCount,
@@ -384,15 +392,15 @@ struct TurbineState {
             baffleOuterRadius: self.baffleOuterRadius,
             baffleWidth: self.baffleWidth,
             impellerCount: impellerCount ?? self.impellerCount,
-            hubRadius: self.hubRadius,
-            hubHeight: self.hubHeight,
-            diskRadius: self.diskRadius,
-            diskHeight: self.diskHeight,
-            bladeCount: self.bladeCount,
-            bladeInnerRadius: self.bladeInnerRadius,
-            bladeOuterRadius: self.bladeOuterRadius,
-            bladeWidth: self.bladeWidth,
-            bladeHeight: self.bladeHeight,
+            hubRadius: update(newCount: impellerCount, array: self.hubRadius),
+            hubHeight: update(newCount: impellerCount, array: self.hubHeight),
+            diskRadius: update(newCount: impellerCount, array: self.diskRadius),
+            diskHeight: update(newCount: impellerCount, array: self.diskHeight),
+            bladeCount: update(newCount: impellerCount, array: self.bladeCount),
+            bladeInnerRadius: update(newCount: impellerCount, array: self.bladeInnerRadius),
+            bladeOuterRadius: update(newCount: impellerCount, array: self.bladeOuterRadius),
+            bladeWidth: update(newCount: impellerCount, array: self.bladeWidth),
+            bladeHeight: update(newCount: impellerCount, array: self.bladeHeight),
             transPanXY: 0,
             transPanYZ: 0,
             transPanXZ: 0,
@@ -403,5 +411,19 @@ struct TurbineState {
             transEnableImpeller: false,
             transEnableRotate: false
         )
+    }
+}
+
+private func update<T>(newCount: Int?, array: [T]) -> [T] {
+    if let value = newCount {
+        if value < array.count {
+            return Array<T>(array.prefix(value))
+        } else if value > array.count {
+            return array + Array<T>(repeating: array[0], count: value - array.count)
+        }
+
+        return array
+    } else {
+        return array
     }
 }

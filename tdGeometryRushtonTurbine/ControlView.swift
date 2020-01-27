@@ -10,16 +10,16 @@ import SwiftUI
 
 struct ControlView: View {
 
-    var control: ControlModel
+    @ObservedObject var engine: Engine
 
     var body: some View {
         List {
-            FieldSection(section: control.tankSection)
-            FieldSection(section: control.shaftSection)
-            FieldSection(section: control.baffleSection)
-            FieldSection(section: control.impellerCountSection)
+            FieldSection(section: engine.controlModel.tankSection)
+            FieldSection(section: engine.controlModel.shaftSection)
+            FieldSection(section: engine.controlModel.baffleSection)
+            FieldSection(section: engine.controlModel.impellerCountSection)
 
-            ForEach(control.impellerSections) { section in
+            ForEach(engine.controlModel.impellerSections) { section in
                 ImpellerSection(section: section)
             }
         }
