@@ -16,6 +16,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ControlView(engine: engine)
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
             RenderView(engine: engine)
         }
     }
@@ -42,14 +44,12 @@ struct TabBarView: View {
 
     var body: some View {
         TabView() {
-            NavigationView {
-                ControlView(engine: engine)
-            }.tabItem {
-                self.tabItem(text: "Control")
-            }.tag(Tab.control)
             RenderView(engine: engine).tabItem{
                 self.tabItem(text: "Render")
             }.tag(Tab.render)
+            ControlView(engine: engine).tabItem {
+                self.tabItem(text: "Control")
+            }.tag(Tab.control)
         }.edgesIgnoringSafeArea(.top)
     }
 }

@@ -11,11 +11,12 @@ import Combine
 
 class ControlModel {
 
-    var tankSection: SectionModel
-    var shaftSection: SectionModel
-    var baffleSection: SectionModel
-    var impellerCountSection: SectionModel
+    var tankSection: SectionModel<InputFieldModel>
+    var shaftSection: SectionModel<InputFieldModel>
+    var baffleSection: SectionModel<InputFieldModel>
+    var impellerCountSection: SectionModel<InputFieldModel>
     var impellerSections: [ImpellerSectionModel]
+    var outputPlaneSection: SectionModel<PlaneInputModel>
 
     init(state: TurbineState, callback: PassthroughSubject<TurbineState, Never>) {
         self.tankSection = SectionModel(title: "Tank", fields: [
@@ -100,20 +101,91 @@ class ControlModel {
             ))
         }
         self.impellerSections = array
+
+        self.outputPlaneSection = SectionModel(title: "Output Plane", fields: [
+            PlaneInputModel(
+                title: "XY Plane",
+                minValue: Int(state.tankDiameter * -0.5),
+                maxValue: Int(state.tankDiameter * 0.5),
+                active: state.transEnableXY,
+                input: state.transPanXY,
+                outputBlock: { callback.send(state.changeValues(transPanXY: $1, transEnableXY: $0)) }
+            ),
+            PlaneInputModel(
+                title: "YZ Plane",
+                minValue: Int(state.tankDiameter * -0.5),
+                maxValue: Int(state.tankDiameter * 0.5),
+                active: state.transEnableYZ,
+                input: state.transPanYZ,
+                outputBlock: { callback.send(state.changeValues(transPanYZ: $1, transEnableYZ: $0)) }
+            ),
+            PlaneInputModel(
+                title: "XZ Plane",
+                minValue: Int(state.tankHeight * -0.5),
+                maxValue: Int(state.tankHeight * 0.5),
+                active: state.transEnableXZ,
+                input: state.transPanXZ,
+                outputBlock: { callback.send(state.changeValues(transPanXZ: $1, transEnableXZ: $0)) }
+            ),
+            PlaneInputModel(
+                title: "Rotate Plane",
+                minValue: 0,
+                maxValue: 360,
+                active: state.transEnableRotate,
+                input: state.transRotateAngle,
+                outputBlock: { callback.send(state.changeValues(transRotateAngle: $1, transEnableRotate: $0)) }
+            )
+        ])
     }
 }
 
-struct SectionModel {
+struct SectionModel<T> {
     var title: String
-    var fields: [InputFieldModel]
+    var fields: [T]
 }
 
 struct ImpellerSectionModel: Identifiable {
     var id = UUID()
     var title: String
-    var hubSection: SectionModel
-    var diskSection: SectionModel
-    var bladeSection: SectionModel
+    var hubSection: SectionModel<InputFieldModel>
+    var diskSection: SectionModel<InputFieldModel>
+    var bladeSection: SectionModel<InputFieldModel>
+}
+
+class PlaneInputModel: Identifiable {
+
+    let id = UUID()
+    let title: String
+    let minValue: Int
+    let maxValue: Int
+
+    var active = false {
+        didSet {
+            update()
+        }
+    }
+
+    var value: Binding<Int> {
+        return Binding<Int>(
+            get: { return self.input }
+        ) { [weak self] _ in self?.update() }
+    }
+
+    private let input: Int
+    private let outputBlock: (Bool, Int) -> Void
+
+    init(title: String, minValue: Int, maxValue: Int, active: Bool, input: Int, outputBlock: @escaping (Bool, Int) -> Void) {
+        self.title = title
+        self.minValue = minValue
+        self.maxValue = maxValue
+        self.active = active
+        self.input = input
+        self.outputBlock = outputBlock
+    }
+
+    private func update() {
+        outputBlock(active, value.wrappedValue)
+    }
 }
 
 class InputFieldModel: Identifiable {

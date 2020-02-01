@@ -12,6 +12,9 @@
 		2C62149F23DC2FE4005B0196 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62149E23DC2FE4005B0196 /* Engine.swift */; };
 		2C6214A323DD737C005B0196 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6214A223DD737C005B0196 /* ControlView.swift */; };
 		2C6214A723DDC99D005B0196 /* ControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6214A623DDC99D005B0196 /* ControlModel.swift */; };
+		2C916ACE23E55DC500A1221E /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916ACD23E55DC500A1221E /* Style.swift */; };
+		2C916AD023E56E9500A1221E /* ScenePrimitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */; };
+		2C916AD223E57F2D00A1221E /* TurbineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916AD123E57F2D00A1221E /* TurbineState.swift */; };
 		2CAE9EC523DB8409001FCE5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EC423DB8409001FCE5B /* AppDelegate.swift */; };
 		2CAE9EC723DB8409001FCE5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EC623DB8409001FCE5B /* SceneDelegate.swift */; };
 		2CAE9EC923DB8409001FCE5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EC823DB8409001FCE5B /* ContentView.swift */; };
@@ -37,6 +40,9 @@
 		2C62149E23DC2FE4005B0196 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		2C6214A223DD737C005B0196 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		2C6214A623DDC99D005B0196 /* ControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlModel.swift; sourceTree = "<group>"; };
+		2C916ACD23E55DC500A1221E /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePrimitive.swift; sourceTree = "<group>"; };
+		2C916AD123E57F2D00A1221E /* TurbineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurbineState.swift; sourceTree = "<group>"; };
 		2CAE9EC123DB8409001FCE5B /* tdGeometryRushtonTurbine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tdGeometryRushtonTurbine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAE9EC423DB8409001FCE5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CAE9EC623DB8409001FCE5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +108,10 @@
 				2CAE9ECC23DB840A001FCE5B /* Preview Content */,
 				2C62149323DC2715005B0196 /* RenderView.swift */,
 				2CAE9EC623DB8409001FCE5B /* SceneDelegate.swift */,
+				2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */,
+				2C916ACD23E55DC500A1221E /* Style.swift */,
 				2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */,
+				2C916AD123E57F2D00A1221E /* TurbineState.swift */,
 			);
 			path = tdGeometryRushtonTurbine;
 			sourceTree = "<group>";
@@ -226,12 +235,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C62149F23DC2FE4005B0196 /* Engine.swift in Sources */,
+				2C916AD223E57F2D00A1221E /* TurbineState.swift in Sources */,
 				2CAE9EC523DB8409001FCE5B /* AppDelegate.swift in Sources */,
 				2CAE9EC723DB8409001FCE5B /* SceneDelegate.swift in Sources */,
 				2C62149423DC2715005B0196 /* RenderView.swift in Sources */,
 				2CAE9EC923DB8409001FCE5B /* ContentView.swift in Sources */,
 				2C6214A323DD737C005B0196 /* ControlView.swift in Sources */,
 				2C62149923DC2B8D005B0196 /* MathUtilities.swift in Sources */,
+				2C916ACE23E55DC500A1221E /* Style.swift in Sources */,
+				2C916AD023E56E9500A1221E /* ScenePrimitive.swift in Sources */,
 				2C6214A723DDC99D005B0196 /* ControlModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
