@@ -15,7 +15,7 @@ struct ControlView: View {
     var body: some View {
         ScrollView {
             VStack {
-                SettingsSection()
+                SettingsSection(engine: engine)
 
                 FieldSection(section: engine.controlModel.tankSection)
                 FieldSection(section: engine.controlModel.shaftSection)
@@ -51,6 +51,8 @@ struct SectionHeader: View {
 
 struct SettingsSection: View {
 
+    var engine: Engine
+
     @State private var expanded = false
 
     var body: some View {
@@ -65,13 +67,13 @@ struct SettingsSection: View {
                 }
                 .padding(.vertical, 5)
                 .buttonStyle(BorderlessButtonStyle())
-                Button(action: {}) {
+                Button(action: { self.engine.loadJson() }) {
                     Text("Load Json")
                         .frame(minWidth: 0, maxWidth: .infinity)
                 }
                 .padding(.vertical, 5)
                 .buttonStyle(BorderlessButtonStyle())
-                Button(action: {}) {
+                Button(action: { self.engine.saveJson() }) {
                     Text("Save Json")
                         .frame(minWidth: 0, maxWidth: .infinity)
                 }

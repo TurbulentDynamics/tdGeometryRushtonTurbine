@@ -9,6 +9,10 @@
 import SceneKit
 import Combine
 
+enum EngineAction {
+    case pick([String], (URL) -> Void)
+}
+
 class Engine: NSObject, ObservableObject {
 
     private let greyColor = UIColor(red: 238.0 / 256.0, green: 238.0 / 256.0, blue: 238.0 / 256.0, alpha: 1)
@@ -18,7 +22,9 @@ class Engine: NSObject, ObservableObject {
     var scene: SCNScene
 
     @Published var controlModel: ControlModel
-    
+
+    let actionSubject = PassthroughSubject<EngineAction, Never>()
+
     private let callback = PassthroughSubject<TurbineState, Never>()
 
     private let grid = SCNNode()
@@ -122,6 +128,37 @@ class Engine: NSObject, ObservableObject {
 
         createPlane()
         createTransPan(d: state.tankDiameter, h: state.tankHeight)
+    }
+
+    func loadJson() {
+        actionSubject.send(.pick([], { [weak self] url in
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let object = try decoder.decode(JData.self, from: data)
+                self?.updateState(newState: JData.create(object))
+            } catch {
+                // TODO show error
+                print(error)
+            }
+        }))
+    }
+
+    func saveJson() {
+        actionSubject.send(.pick([kUTTypeFolder as String], { [weak self] url in
+            guard let state = self?.state else {
+                return
+            }
+
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(JData.create(state))
+                try data.write(to: url, options: .atomic)
+            } catch {
+                // TODO show error
+                print(error)
+            }
+        }))
     }
 
     private func updateState(newState: TurbineState) {

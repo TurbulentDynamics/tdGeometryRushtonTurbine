@@ -8,11 +8,14 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private var engineActionSink: AnyCancellable?
+    private var pickerContext: PickerContext?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,7 +23,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(engine: Engine())
+        let engine = Engine()
+        engineActionSink = engine.actionSubject.sink { [weak self] action in
+            switch action {
+            case .pick(let type, let callback):
+                let context = PickerContext(callback: callback)
+                self?.pickerContext = context
+
+                let controller = UIDocumentPickerViewController(documentTypes: type, in: .open)
+                controller.delegate = context
+                self?.window?.rootViewController?.present(controller, animated: true, completion: nil)
+            }
+        }
+        let contentView = ContentView(engine: engine)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -62,3 +77,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+private class PickerContext: NSObject {
+
+    private let callback: (URL) -> Void
+
+    init(callback: @escaping (URL) -> Void) {
+        self.callback = callback
+        super.init()
+    }
+}
+
+extension PickerContext: UIDocumentPickerDelegate {
+
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        if let url = urls.first {
+            callback(url)
+        }
+    }
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        // TODO
+    }
+}
