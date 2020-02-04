@@ -150,10 +150,12 @@ class Engine: NSObject, ObservableObject {
                 return
             }
 
+            let fileURL = url.appendingPathComponent("\(Date()).json")
+
             do {
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(JData.create(state))
-                try data.write(to: url, options: .atomic)
+                try data.write(to: fileURL, options: .atomic)
             } catch {
                 // TODO show error
                 print(error)
