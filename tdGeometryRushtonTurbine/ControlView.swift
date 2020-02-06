@@ -61,12 +61,6 @@ struct SettingsSection: View {
                 .onTapGesture { self.expanded.toggle() }
 
             if expanded {
-                Button(action: {}) {
-                    Text("Reset Camera")
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                }
-                .padding(.vertical, 5)
-                .buttonStyle(BorderlessButtonStyle())
                 Button(action: { self.engine.loadJson() }) {
                     Text("Load Json")
                         .frame(minWidth: 0, maxWidth: .infinity)

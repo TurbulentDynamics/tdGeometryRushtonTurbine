@@ -289,6 +289,7 @@ class Engine: NSObject, ObservableObject {
         tank.geometry = geometry
         tank.name = "tank"
         tank.opacity = 0.3
+        tank.renderingOrder = 1 // IMPORTANT need this to have correct transparency
         scene.rootNode.addChildNode(tank)
     }
 
