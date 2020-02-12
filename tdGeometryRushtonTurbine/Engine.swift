@@ -135,10 +135,7 @@ class Engine: NSObject, ObservableObject {
     func loadJson() {
         actionSubject.send(.pick([], { [weak self] url in
             do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let object = try decoder.decode(JData.self, from: data)
-                self?.updateState(newState: JData.create(object))
+                self?.updateState(newState: try readTurbineState(url))
             } catch {
                 // TODO show error
                 print(error)
@@ -152,12 +149,8 @@ class Engine: NSObject, ObservableObject {
                 return
             }
 
-            let fileURL = url.appendingPathComponent("\(Date()).json")
-
             do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(JData.create(state))
-                try data.write(to: fileURL, options: .atomic)
+                try saveTurbineState(state: state, url: url)
             } catch {
                 // TODO show error
                 print(error)

@@ -8,6 +8,44 @@
 
 import Foundation
 
+enum GeneralError: Error {
+    case security
+}
+
+func readTurbineState(_ url: URL) throws -> TurbineState {
+    guard url.startAccessingSecurityScopedResource() else {
+        throw GeneralError.security
+    }
+
+    defer {
+        url.stopAccessingSecurityScopedResource()
+    }
+
+    let data = try Data(contentsOf: url)
+    let decoder = JSONDecoder()
+    let object = try decoder.decode(JData.self, from: data)
+    return JData.create(object)
+}
+
+func saveTurbineState(state: TurbineState, url: URL) throws {
+    guard url.startAccessingSecurityScopedResource() else {
+        throw GeneralError.security
+    }
+
+    defer {
+        url.stopAccessingSecurityScopedResource()
+    }
+
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    let date = formatter.string(from: Date())
+    let fileURL = url.appendingPathComponent("tdGeometryRushtonTurbine-\(date).json")
+
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(JData.create(state))
+    try data.write(to: fileURL, options: .atomic)
+}
+
 extension JData {
 
     static func create(_ state: TurbineState) -> JData {
@@ -123,7 +161,7 @@ extension JData {
     }
 }
 
-struct JData: Codable {
+private struct JData: Codable {
     var name: String
     var gridx: Float
     var resolution: String
@@ -137,7 +175,7 @@ struct JData: Codable {
     var impeller: [String : JImpeller]
 }
 
-struct JBaffle: Codable {
+private struct JBaffle: Codable {
     var numBaffles: Int
     var firstBaffleOffset: String
     var innerRadius: Float
@@ -145,11 +183,11 @@ struct JBaffle: Codable {
     var thickness: Float
 }
 
-struct JShaft: Codable {
+private struct JShaft: Codable {
     var radius: Float
 }
 
-struct JImpeller: Codable {
+private struct JImpeller: Codable {
     var numBlades: Int
     var firstBladeOffset: Int
     var uav: String
@@ -160,7 +198,7 @@ struct JImpeller: Codable {
     var hub: JHub
 }
 
-struct JBlade: Codable {
+private struct JBlade: Codable {
     var innerRadius: Float
     var outerRadius: Float
     var bottom: String
@@ -168,13 +206,13 @@ struct JBlade: Codable {
     var bladeThickness: Float
 }
 
-struct JDisk: Codable {
+private struct JDisk: Codable {
     var radius: Float
     var bottom: String
     var top: Float
 }
 
-struct JHub: Codable {
+private struct JHub: Codable {
     var radius: Float
     var bottom: String
     var top: Float
