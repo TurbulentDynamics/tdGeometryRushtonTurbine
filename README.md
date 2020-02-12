@@ -2,7 +2,7 @@
 
 An iOS application to create the required json file to use as input for a lattice boltzmann cluster applicaiton.
 
-![iOS Rushton Turbine](Screenshot.png)
+![iOS Rushton Turbine](docs/Screenshot.png)
 
 
 
