@@ -37,22 +37,32 @@ class ControlModel {
         self.baffleSection = SectionModel(title: "Baffle", fields: [
             InputFieldModel(title: "Count", inputBlock: {
                 return String(state.baffleCount)
-            }, outputBlock: { _ in }),
+            }, outputBlock: {
+                callback.send(state.changeValues(baffleCount: Int($0)))
+            }),
             InputFieldModel(title: "Inner Radius", inputBlock: {
                 return String(state.baffleInnerRadius)
-            }, outputBlock: { _ in }),
+            }, outputBlock: {
+                callback.send(state.changeValues(baffleInnerRadius: Float($0)))
+            }),
             InputFieldModel(title: "Outer Radius", inputBlock: {
                 return String(state.baffleOuterRadius)
-            }, outputBlock: { _ in }),
+            }, outputBlock: {
+                callback.send(state.changeValues(baffleOuterRadius: Float($0)))
+            }),
             InputFieldModel(title: "Width", inputBlock: {
                 return String(state.baffleWidth)
-            }, outputBlock: { _ in })
+            }, outputBlock: {
+                callback.send(state.changeValues(baffleWidth: Float($0)))
+            })
         ])
 
         self.impellerCountSection = SectionModel(title: "Impeller Count", fields: [
             InputFieldModel(title: "Count", inputBlock: {
                 return String(state.impellerCount)
-            }, outputBlock: { callback.send(state.changeValues(impellerCount: Int($0))) })
+            }, outputBlock: {
+                callback.send(state.changeImpellerCount(Int($0)))
+            })
         ])
 
         var array = [ImpellerSectionModel]()
@@ -60,37 +70,91 @@ class ControlModel {
             let hubSection = SectionModel(title: "Hub", fields: [
                 InputFieldModel(title: "Radius", inputBlock: {
                     return String(state.hubRadius[i])
-                }, outputBlock: { _ in }),
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.hubRadius
+                        copy[i] = value
+                        callback.send(state.changeValues(hubRadius: copy))
+                    }
+                }),
                 InputFieldModel(title: "Height", inputBlock: {
                     return String(state.hubHeight[i])
-                }, outputBlock: { _ in })
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.hubHeight
+                        copy[i] = value
+                        callback.send(state.changeValues(hubHeight: copy))
+                    }
+                })
             ])
 
             let diskSection = SectionModel(title: "Disk", fields: [
                 InputFieldModel(title: "Radius", inputBlock: {
                     return String(state.diskRadius[i])
-                }, outputBlock: { _ in }),
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.diskRadius
+                        copy[i] = value
+                        callback.send(state.changeValues(diskRadius: copy))
+                    }
+                }),
                 InputFieldModel(title: "Height", inputBlock: {
                     return String(state.diskHeight[i])
-                }, outputBlock: { _ in })
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.diskHeight
+                        copy[i] = value
+                        callback.send(state.changeValues(diskHeight: copy))
+                    }
+                })
             ])
 
             let bladeSection = SectionModel(title: "Blade", fields: [
                 InputFieldModel(title: "Count", inputBlock: {
                     return String(state.bladeCount[i])
-                }, outputBlock: { _ in }),
+                }, outputBlock: {
+                    if let value = Int($0) {
+                        var copy = state.bladeCount
+                        copy[i] = value
+                        callback.send(state.changeValues(bladeCount: copy))
+                    }
+                }),
                 InputFieldModel(title: "Inner Radius", inputBlock: {
                     return String(state.bladeInnerRadius[i])
-                }, outputBlock: { _ in }),
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.bladeInnerRadius
+                        copy[i] = value
+                        callback.send(state.changeValues(bladeInnerRadius: copy))
+                    }
+                }),
                 InputFieldModel(title: "Outer Radius", inputBlock: {
                     return String(state.bladeOuterRadius[i])
-                }, outputBlock: { _ in }),
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.bladeOuterRadius
+                        copy[i] = value
+                        callback.send(state.changeValues(bladeOuterRadius: copy))
+                    }
+                }),
                 InputFieldModel(title: "Width", inputBlock: {
                     return String(state.bladeWidth[i])
-                }, outputBlock: { _ in }),
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.bladeWidth
+                        copy[i] = value
+                        callback.send(state.changeValues(bladeWidth: copy))
+                    }
+                }),
                 InputFieldModel(title: "Height", inputBlock: {
                     return String(state.bladeHeight[i])
-                }, outputBlock: { _ in })
+                }, outputBlock: {
+                    if let value = Float($0) {
+                        var copy = state.bladeHeight
+                        copy[i] = value
+                        callback.send(state.changeValues(bladeHeight: copy))
+                    }
+                })
             ])
 
             array.append(ImpellerSectionModel(

@@ -44,7 +44,20 @@ struct TurbineState: Equatable {
         tankDiameter: Float? = nil,
         tankHeight: Float? = nil,
         shaftRadius: Float? = nil,
+        baffleCount: Int? = nil,
+        baffleInnerRadius: Float? = nil,
+        baffleOuterRadius: Float? = nil,
+        baffleWidth: Float? = nil,
         impellerCount: Int? = nil,
+        hubRadius: [Float]? = nil,
+        hubHeight: [Float]? = nil,
+        diskRadius: [Float]? = nil,
+        diskHeight: [Float]? = nil,
+        bladeCount: [Int]? = nil,
+        bladeInnerRadius: [Float]? = nil,
+        bladeOuterRadius: [Float]? = nil,
+        bladeWidth: [Float]? = nil,
+        bladeHeight: [Float]? = nil,
         transPanXY: Int? = nil,
         transPanYZ: Int? = nil,
         transPanXZ: Int? = nil,
@@ -62,20 +75,20 @@ struct TurbineState: Equatable {
             shaftRadius: shaftRadius ?? self.shaftRadius,
             kernelAutoRotation: self.kernelAutoRotation,
             kernelRotationDir: self.kernelRotationDir,
-            baffleCount: self.baffleCount,
-            baffleInnerRadius: self.baffleInnerRadius,
-            baffleOuterRadius: self.baffleOuterRadius,
-            baffleWidth: self.baffleWidth,
+            baffleCount: baffleCount ?? self.baffleCount,
+            baffleInnerRadius: baffleInnerRadius ?? self.baffleInnerRadius,
+            baffleOuterRadius: baffleOuterRadius ?? self.baffleOuterRadius,
+            baffleWidth: baffleWidth ?? self.baffleWidth,
             impellerCount: impellerCount ?? self.impellerCount,
-            hubRadius: update(newCount: impellerCount, array: self.hubRadius),
-            hubHeight: update(newCount: impellerCount, array: self.hubHeight),
-            diskRadius: update(newCount: impellerCount, array: self.diskRadius),
-            diskHeight: update(newCount: impellerCount, array: self.diskHeight),
-            bladeCount: update(newCount: impellerCount, array: self.bladeCount),
-            bladeInnerRadius: update(newCount: impellerCount, array: self.bladeInnerRadius),
-            bladeOuterRadius: update(newCount: impellerCount, array: self.bladeOuterRadius),
-            bladeWidth: update(newCount: impellerCount, array: self.bladeWidth),
-            bladeHeight: update(newCount: impellerCount, array: self.bladeHeight),
+            hubRadius: hubRadius ?? self.hubRadius,
+            hubHeight: hubHeight ?? self.hubHeight,
+            diskRadius: diskRadius ?? self.diskRadius,
+            diskHeight: diskHeight ?? self.diskHeight,
+            bladeCount: bladeCount ?? self.bladeCount,
+            bladeInnerRadius: bladeInnerRadius ?? self.bladeInnerRadius,
+            bladeOuterRadius: bladeOuterRadius ?? self.bladeOuterRadius,
+            bladeWidth: bladeWidth ?? self.bladeWidth,
+            bladeHeight: bladeHeight ?? self.bladeHeight,
             transPanXY: transPanXY ?? self.transPanXY,
             transPanYZ: transPanYZ ?? self.transPanYZ,
             transPanXZ: transPanXZ ?? self.transPanXZ,
@@ -87,6 +100,21 @@ struct TurbineState: Equatable {
             transEnableRotate: transEnableRotate ?? self.transEnableRotate
         )
     }
+
+    func changeImpellerCount(_ value: Int?) -> TurbineState {
+        return changeValues(
+            impellerCount: value,
+            hubRadius: update(newCount: value, array: self.hubRadius),
+            hubHeight: update(newCount: value, array: self.hubHeight),
+            diskRadius: update(newCount: value, array: self.diskRadius),
+            diskHeight: update(newCount: value, array: self.diskHeight),
+            bladeCount: update(newCount: value, array: self.bladeCount),
+            bladeInnerRadius: update(newCount: value, array: self.bladeInnerRadius),
+            bladeOuterRadius: update(newCount: value, array: self.bladeOuterRadius),
+            bladeWidth: update(newCount: value, array: self.bladeWidth),
+            bladeHeight: update(newCount: value, array: self.bladeHeight)
+        )
+    }
 }
 
 private func update<T>(newCount: Int?, array: [T]) -> [T] {
@@ -96,7 +124,6 @@ private func update<T>(newCount: Int?, array: [T]) -> [T] {
         } else if value > array.count {
             return array + Array<T>(repeating: array[0], count: value - array.count)
         }
-
         return array
     } else {
         return array
