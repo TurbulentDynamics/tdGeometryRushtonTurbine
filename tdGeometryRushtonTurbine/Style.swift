@@ -14,4 +14,7 @@ final class Palette {
     static let sectionBackgroundColor = Color("SectionBackgroundColor")
     static let textColor = Color("TextColor")
 
+    static let greyColor = Color("GreyColor")
+    static let metalColor = Color("MetalColor")
+
 }

@@ -17,9 +17,6 @@ enum EngineAction {
 
 class Engine: NSObject, ObservableObject {
 
-    private let greyColor = UIColor(red: 238.0 / 256.0, green: 238.0 / 256.0, blue: 238.0 / 256.0, alpha: 1)
-    private let metalColor = UIColor.white
-
     var state: TurbineState
     var scene: SCNScene
 
@@ -44,7 +41,7 @@ class Engine: NSObject, ObservableObject {
     private var transPanMeshXZ = SCNNode()
     private var transPanMeshCenter = SCNNode()
 
-    private var s: AnyCancellable?
+    private var cancellable: AnyCancellable?
 
     override init() {
         let unit: Float = 300
@@ -86,7 +83,7 @@ class Engine: NSObject, ObservableObject {
 
         super.init()
 
-        s = callback.sink { [weak self] value in
+        cancellable = callback.sink { [weak self] value in
             self?.updateState(newState: value)
         }
 
@@ -284,7 +281,7 @@ class Engine: NSObject, ObservableObject {
 
     private func createTank() {
         let geometry = SCNCylinder(radius: CGFloat(state.tankDiameter) / 2, height: CGFloat(state.tankHeight))
-        geometry.firstMaterial?.diffuse.contents = greyColor
+        geometry.firstMaterial?.diffuse.contents = Palette.greyColor
         geometry.firstMaterial?.lightingModel = .phong
 
         tank.geometry = geometry
@@ -296,7 +293,7 @@ class Engine: NSObject, ObservableObject {
 
     private func updateTank(tankDiameter: Float, tankHeight: Float) {
         let geometry = SCNCylinder(radius: CGFloat(tankDiameter) / 2, height: CGFloat(tankHeight))
-        geometry.firstMaterial?.diffuse.contents = greyColor
+        geometry.firstMaterial?.diffuse.contents = Palette.greyColor
         geometry.firstMaterial?.lightingModel = .phong
 
         tank.geometry = geometry
@@ -304,7 +301,7 @@ class Engine: NSObject, ObservableObject {
 
     private func createShaft() {
         let geometry = SCNCylinder(radius: CGFloat(state.shaftRadius), height: CGFloat(state.tankHeight))
-        geometry.firstMaterial?.diffuse.contents = metalColor
+        geometry.firstMaterial?.diffuse.contents = Palette.metalColor
         geometry.firstMaterial?.lightingModel = .phong
 
         shaft.geometry = geometry
@@ -314,7 +311,7 @@ class Engine: NSObject, ObservableObject {
 
     private func updateShaft(shaftRadius: Float, tankHeight: Float) {
         let geometry = SCNCylinder(radius: CGFloat(shaftRadius), height: CGFloat(tankHeight))
-        geometry.firstMaterial?.diffuse.contents = metalColor
+        geometry.firstMaterial?.diffuse.contents = Palette.metalColor
         geometry.firstMaterial?.lightingModel = .phong
 
         shaft.geometry = geometry
@@ -325,7 +322,7 @@ class Engine: NSObject, ObservableObject {
         let height = state.hubHeight[num]
 
         let geometry = SCNCylinder(radius: CGFloat(radius), height: CGFloat(height))
-        geometry.firstMaterial?.diffuse.contents = metalColor
+        geometry.firstMaterial?.diffuse.contents = Palette.metalColor
         geometry.firstMaterial?.lightingModel = .phong
 
         let node = SCNNode(geometry: geometry)
@@ -337,7 +334,7 @@ class Engine: NSObject, ObservableObject {
 
     private func updateHub(radius: Float, height: Float, num: Int) {
         let geometry = SCNCylinder(radius: CGFloat(radius), height: CGFloat(height))
-        geometry.firstMaterial?.diffuse.contents = metalColor
+        geometry.firstMaterial?.diffuse.contents = Palette.metalColor
         geometry.firstMaterial?.lightingModel = .phong
 
         hubs[num].geometry = geometry
@@ -348,7 +345,7 @@ class Engine: NSObject, ObservableObject {
         let height = state.diskHeight[num]
 
         let geometry = SCNCylinder(radius: CGFloat(radius), height: CGFloat(height))
-        geometry.firstMaterial?.diffuse.contents = metalColor
+        geometry.firstMaterial?.diffuse.contents = Palette.metalColor
         geometry.firstMaterial?.lightingModel = .phong
 
         let node = SCNNode(geometry: geometry)
@@ -360,7 +357,7 @@ class Engine: NSObject, ObservableObject {
 
     private func updateDisk(radius: Float, height: Float, num: Int) {
         let geometry = SCNCylinder(radius: CGFloat(radius), height: CGFloat(height))
-        geometry.firstMaterial?.diffuse.contents = metalColor
+        geometry.firstMaterial?.diffuse.contents = Palette.metalColor
         geometry.firstMaterial?.lightingModel = .phong
 
         disks[num].geometry = geometry
@@ -380,7 +377,7 @@ class Engine: NSObject, ObservableObject {
                     length: CGFloat(state.bladeOuterRadius[num] - state.bladeInnerRadius[num]),
                     chamferRadius: 0
                 )
-                geometry.firstMaterial?.diffuse.contents = greyColor
+                geometry.firstMaterial?.diffuse.contents = Palette.greyColor
                 geometry.firstMaterial?.lightingModel = .phong
 
                 let node = SCNNode(geometry: geometry)
@@ -399,7 +396,7 @@ class Engine: NSObject, ObservableObject {
                 length: CGFloat(outerRadius - innerRadius),
                 chamferRadius: 0
             )
-            geometry.firstMaterial?.diffuse.contents = greyColor
+            geometry.firstMaterial?.diffuse.contents = Palette.greyColor
             geometry.firstMaterial?.lightingModel = .phong
 
             blades[num][i].geometry = geometry
@@ -521,7 +518,7 @@ class Engine: NSObject, ObservableObject {
                     length: CGFloat(state.baffleOuterRadius - state.baffleInnerRadius),
                     chamferRadius: 0
                 )
-                geometry.firstMaterial?.diffuse.contents = greyColor
+                geometry.firstMaterial?.diffuse.contents = Palette.greyColor
                 geometry.firstMaterial?.lightingModel = .phong
 
                 let node = SCNNode(geometry: geometry)
