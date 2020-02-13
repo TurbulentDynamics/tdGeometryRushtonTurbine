@@ -117,9 +117,9 @@ class Engine: NSObject, ObservableObject {
 
         for i in 0..<state.impellerCount {
             blades.append([])
-            createHub(state: state, num: i, count: state.impellerCount)
-            createDisk(state: state, num: i, count: state.impellerCount)
-            changeBladeCount(state: state, newValue: state.bladeCount[i], oldValue: 0, num: i)
+            createHub(num: i, count: state.impellerCount)
+            createDisk(num: i, count: state.impellerCount)
+            changeBladeCount(newValue: state.bladeCount[i], oldValue: 0, num: i)
         }
 
         changeBaffleCount(newValue: state.baffleCount, oldValue: 0)
@@ -164,12 +164,11 @@ class Engine: NSObject, ObservableObject {
         controlModel = ControlModel(state: newState, callback: callback)
 
         if newState.impellerCount != oldState.impellerCount {
-            changeImpellerCount(state: oldState, newValue: newState.impellerCount, oldValue: oldState.impellerCount)
+            changeImpellerCount(newValue: newState.impellerCount, oldValue: oldState.impellerCount)
         } else {
             for i in 0..<oldState.impellerCount {
                 if newState.bladeCount[i] != oldState.bladeCount[i] {
                     changeBladeCount(
-                        state: oldState,
                         newValue: newState.bladeCount[i],
                         oldValue: oldState.bladeCount[i],
                         num: i
@@ -240,12 +239,12 @@ class Engine: NSObject, ObservableObject {
         case "clockwise":
             kernelAngle = (kernelAngle + 1) % 360
             for i in 0..<state.impellerCount {
-                updateBlades(state: state, innerRadius: state.bladeInnerRadius[i], outerRadius: state.bladeOuterRadius[i], num: i);
+                updateBlades(innerRadius: state.bladeInnerRadius[i], outerRadius: state.bladeOuterRadius[i], num: i);
             }
         case "counter-clockwise":
             kernelAngle = (kernelAngle - 1) % 360
             for i in 0..<state.impellerCount {
-                updateBlades(state: state, innerRadius: state.bladeInnerRadius[i], outerRadius: state.bladeOuterRadius[i], num: i)
+                updateBlades(innerRadius: state.bladeInnerRadius[i], outerRadius: state.bladeOuterRadius[i], num: i)
             }
         default:
             break
@@ -317,7 +316,7 @@ class Engine: NSObject, ObservableObject {
         shaft.geometry = geometry
     }
 
-    private func createHub(state: TurbineState, num: Int, count: Int) {
+    private func createHub(num: Int, count: Int) {
         let radius = state.hubRadius[num]
         let height = state.hubHeight[num]
 
@@ -327,7 +326,7 @@ class Engine: NSObject, ObservableObject {
 
         let node = SCNNode(geometry: geometry)
         node.name = "hub\(num)"
-        node.position = SCNVector3(0, getImpellerPositionY(state: state, num: num, count: count), 0)
+        node.position = SCNVector3(0, getImpellerPositionY(num: num, count: count), 0)
         hubs.append(node)
         scene.rootNode.addChildNode(node)
     }
@@ -340,7 +339,7 @@ class Engine: NSObject, ObservableObject {
         hubs[num].geometry = geometry
     }
 
-    private func createDisk(state: TurbineState, num: Int, count: Int) {
+    private func createDisk(num: Int, count: Int) {
         let radius = state.diskRadius[num]
         let height = state.diskHeight[num]
 
@@ -350,7 +349,7 @@ class Engine: NSObject, ObservableObject {
 
         let node = SCNNode(geometry: geometry)
         node.name = "disk\(num)"
-        node.position = SCNVector3(0, getImpellerPositionY(state: state, num: num, count: count), 0)
+        node.position = SCNVector3(0, getImpellerPositionY(num: num, count: count), 0)
         disks.append(node)
         scene.rootNode.addChildNode(node)
     }
@@ -363,7 +362,7 @@ class Engine: NSObject, ObservableObject {
         disks[num].geometry = geometry
     }
 
-    private func changeBladeCount(state: TurbineState, newValue: Int, oldValue: Int, num: Int) {
+    private func changeBladeCount(newValue: Int, oldValue: Int, num: Int) {
         if newValue < oldValue {
             for i in stride(from: oldValue - 1, through: newValue, by: -1) {
                 blades[num][i].removeFromParentNode()
@@ -403,12 +402,12 @@ class Engine: NSObject, ObservableObject {
         }
     }
 
-    private func updateBlades(state: TurbineState, innerRadius: Float, outerRadius: Float, num: Int) {
+    private func updateBlades(innerRadius: Float, outerRadius: Float, num: Int) {
         let distance = (innerRadius + outerRadius) / 2
         let yAxis = simd_float3(0, 1, 0)
 
         let count = state.impellerCount
-        let offset = simd_float3(0, getImpellerPositionY(state: state, num: num, count: count), 0)
+        let offset = simd_float3(0, getImpellerPositionY(num: num, count: count), 0)
         for j in 0..<blades[num].count {
             let angle = (360 * j / blades[num].count + kernelAngle) % 360
             let radianAngle = 2 * Float.pi * Float(angle) / 360
@@ -428,6 +427,11 @@ class Engine: NSObject, ObservableObject {
 
             transPanMeshCenter.simdEulerAngles = simd_float3(0, radianAngle1, 0)
         }
+    }
+
+    private func getImpellerPositionY(num: Int, count: Int) -> Float {
+        let tankHeight = state.tankHeight
+        return tankHeight / -2 + tankHeight / Float(count + 1) * Float(num + 1)
     }
 
     private func createTransPan(d: Float, h: Float) {
@@ -452,6 +456,23 @@ class Engine: NSObject, ObservableObject {
         updateTranslucentPan(node: transPanMeshCenter, width: d / 2, height: h, depth: 2)
     }
 
+    private func createTranslucentPan(width: Float, height: Float, length: Float) -> SCNNode {
+        let geometry = SCNBox(
+            width: CGFloat(width),
+            height: CGFloat(height),
+            length: CGFloat(length),
+            chamferRadius: 0
+        )
+        geometry.firstMaterial?.diffuse.contents = UIColor(red: 0, green: 0, blue: 1, alpha: 1)
+        geometry.firstMaterial?.lightingModel = .phong
+
+        let node = SCNNode(geometry: geometry)
+        node.name = "transPan"
+        node.opacity = 0.8
+        node.isHidden = true
+        return node
+    }
+
     private func updateTranslucentPan(node: SCNNode, width: Float, height: Float, depth: Float) {
         guard let geometry = node.geometry as? SCNBox else {
             return
@@ -463,11 +484,11 @@ class Engine: NSObject, ObservableObject {
         )
     }
 
-    private func changeImpellerCount(state: TurbineState, newValue: Int, oldValue: Int) {
+    private func changeImpellerCount(newValue: Int, oldValue: Int) {
         if newValue < oldValue {
             for i in stride(from: oldValue - 1, through: 0, by: -1) {
                 if i < newValue {
-                    let posY = getImpellerPositionY(state: state, num: i, count: newValue)
+                    let posY = getImpellerPositionY(num: i, count: newValue)
                     hubs[i].position.y = posY
                     disks[i].position.y = posY
                 } else {
@@ -477,7 +498,7 @@ class Engine: NSObject, ObservableObject {
                     disks[i].removeFromParentNode()
                     disks.remove(at: i)
 
-                    for j in stride(from: state.bladeCount[i] - 1, through: 0, by: -1) {
+                    for j in stride(from: blades[i].count - 1, through: 0, by: -1) {
                         blades[i][j].removeFromParentNode()
                     }
                     blades.remove(at: i)
@@ -485,7 +506,7 @@ class Engine: NSObject, ObservableObject {
             }
         } else if newValue > oldValue {
             for i in 0..<newValue {
-                let posY = getImpellerPositionY(state: state, num: i, count: newValue)
+                let posY = getImpellerPositionY(num: i, count: newValue)
                 if i < oldValue {
                     hubs[i].position.y = posY
                     disks[i].position.y = posY
@@ -494,11 +515,11 @@ class Engine: NSObject, ObservableObject {
                         blades[i][j].position.y = posY
                     }
                 } else {
-                    createHub(state: state, num: i, count: newValue)
-                    createDisk(state: state, num: i, count: newValue)
+                    createHub(num: i, count: newValue)
+                    createDisk(num: i, count: newValue)
 
                     blades.append([])
-                    changeBladeCount(state: state, newValue: state.bladeCount[i], oldValue: 0, num: i)
+                    changeBladeCount(newValue: state.bladeCount[i], oldValue: 0, num: i)
                 }
             }
         }
@@ -580,26 +601,4 @@ extension Engine: SCNSceneRendererDelegate {
 
 private enum PlaneType {
     case XY, YZ, XZ, Rotate
-}
-
-private func createTranslucentPan(width: Float, height: Float, length: Float) -> SCNNode {
-    let geometry = SCNBox(
-        width: CGFloat(width),
-        height: CGFloat(height),
-        length: CGFloat(length),
-        chamferRadius: 0
-    )
-    geometry.firstMaterial?.diffuse.contents = UIColor(red: 0, green: 0, blue: 1, alpha: 1)
-    geometry.firstMaterial?.lightingModel = .phong
-
-    let node = SCNNode(geometry: geometry)
-    node.name = "transPan"
-    node.opacity = 0.8
-    node.isHidden = true
-    return node
-}
-
-private func getImpellerPositionY(state: TurbineState, num: Int, count: Int) -> Float {
-    let tankHeight = state.tankHeight
-    return tankHeight / -2 + tankHeight / Float(count + 1) * Float(num + 1)
 }
