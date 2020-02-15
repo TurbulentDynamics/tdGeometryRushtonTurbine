@@ -231,7 +231,7 @@ class InputFieldModel: Identifiable {
 
 private  func integerField(title: String, input: Int, outputBlock: @escaping (Int) -> Void) -> InputFieldModel {
     return InputFieldModel(title: title, input: String(input), outputBlock: {
-        if let value = Int($0) {
+        if let value = Int($0), value != input {
             outputBlock(value)
         }
     })
@@ -239,7 +239,7 @@ private  func integerField(title: String, input: Int, outputBlock: @escaping (In
 
 private func floatField(title: String, input: Float, outputBlock: @escaping (Float) -> Void) -> InputFieldModel {
     return InputFieldModel(title: title, input: String(input), outputBlock: {
-        if let value = Float($0) {
+        if let value = Float($0), value != input {
             outputBlock(value)
         }
     })
