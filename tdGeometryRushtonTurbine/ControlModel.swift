@@ -18,142 +18,96 @@ class ControlModel {
     var impellerSections: [ImpellerSectionModel]
     var outputPlaneSection: SectionModel<PlaneInputModel>
 
-    init(state: TurbineState, callback: PassthroughSubject<TurbineState, Never>) {
+    init(state: TurbineState, stateSubject: PassthroughSubject<TurbineState, Never>) {
         self.tankSection = SectionModel(title: "Tank", fields: [
-            InputFieldModel(title: "Diameter", inputBlock: {
-                return String(state.tankDiameter)
-            }, outputBlock: { callback.send(state.changeValues(tankDiameter: Float($0))) }),
-            InputFieldModel(title: "Height", inputBlock: {
-                return String(state.tankHeight)
-            }, outputBlock: { callback.send(state.changeValues(tankHeight: Float($0))) })
+            floatField(title: "Diameter", input: state.tankDiameter, outputBlock: {
+                stateSubject.send(state.changeValues(tankDiameter: $0))
+            }),
+            floatField(title: "Height", input: state.tankHeight, outputBlock: {
+                stateSubject.send(state.changeValues(tankHeight: $0))
+            })
         ])
 
         self.shaftSection = SectionModel(title: "Shaft", fields: [
-            InputFieldModel(title: "Radius", inputBlock: {
-                return String(state.shaftRadius)
-            }, outputBlock: { callback.send(state.changeValues(shaftRadius: Float($0))) })
+            floatField(title: "Radius", input: state.shaftRadius, outputBlock: {
+                stateSubject.send(state.changeValues(shaftRadius: $0))
+            })
         ])
 
         self.baffleSection = SectionModel(title: "Baffle", fields: [
-            InputFieldModel(title: "Count", inputBlock: {
-                return String(state.baffleCount)
-            }, outputBlock: {
-                callback.send(state.changeValues(baffleCount: Int($0)))
+            integerField(title: "Count", input: state.baffleCount, outputBlock: {
+                stateSubject.send(state.changeValues(baffleCount: $0))
             }),
-            InputFieldModel(title: "Inner Radius", inputBlock: {
-                return String(state.baffleInnerRadius)
-            }, outputBlock: {
-                callback.send(state.changeValues(baffleInnerRadius: Float($0)))
+            floatField(title: "Inner Radius", input: state.baffleInnerRadius, outputBlock: {
+                stateSubject.send(state.changeValues(baffleInnerRadius: $0))
             }),
-            InputFieldModel(title: "Outer Radius", inputBlock: {
-                return String(state.baffleOuterRadius)
-            }, outputBlock: {
-                callback.send(state.changeValues(baffleOuterRadius: Float($0)))
+            floatField(title: "Outer Radius", input: state.baffleOuterRadius, outputBlock: {
+                stateSubject.send(state.changeValues(baffleOuterRadius: $0))
             }),
-            InputFieldModel(title: "Width", inputBlock: {
-                return String(state.baffleWidth)
-            }, outputBlock: {
-                callback.send(state.changeValues(baffleWidth: Float($0)))
+            floatField(title: "Width", input: state.baffleWidth, outputBlock: {
+                stateSubject.send(state.changeValues(baffleWidth: $0))
             })
         ])
 
         self.impellerCountSection = SectionModel(title: "Impeller Count", fields: [
-            InputFieldModel(title: "Count", inputBlock: {
-                return String(state.impellerCount)
-            }, outputBlock: {
-                callback.send(state.changeImpellerCount(Int($0)))
+            integerField(title: "Count", input: state.impellerCount, outputBlock: {
+                stateSubject.send(state.changeImpellerCount($0))
             })
         ])
 
         var array = [ImpellerSectionModel]()
         for i in 0..<state.impellerCount {
             let hubSection = SectionModel(title: "Hub", fields: [
-                InputFieldModel(title: "Radius", inputBlock: {
-                    return String(state.hubRadius[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.hubRadius
-                        copy[i] = value
-                        callback.send(state.changeValues(hubRadius: copy))
-                    }
+                floatField(title: "Radius", input: state.hubRadius[i], outputBlock: {
+                    var copy = state.hubRadius
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(hubRadius: copy))
                 }),
-                InputFieldModel(title: "Height", inputBlock: {
-                    return String(state.hubHeight[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.hubHeight
-                        copy[i] = value
-                        callback.send(state.changeValues(hubHeight: copy))
-                    }
+                floatField(title: "Height", input: state.hubHeight[i], outputBlock: {
+                    var copy = state.hubHeight
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(hubHeight: copy))
                 })
             ])
 
             let diskSection = SectionModel(title: "Disk", fields: [
-                InputFieldModel(title: "Radius", inputBlock: {
-                    return String(state.diskRadius[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.diskRadius
-                        copy[i] = value
-                        callback.send(state.changeValues(diskRadius: copy))
-                    }
+                floatField(title: "Radius", input: state.diskRadius[i], outputBlock: {
+                    var copy = state.diskRadius
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(diskRadius: copy))
                 }),
-                InputFieldModel(title: "Height", inputBlock: {
-                    return String(state.diskHeight[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.diskHeight
-                        copy[i] = value
-                        callback.send(state.changeValues(diskHeight: copy))
-                    }
+                floatField(title: "Height", input: state.diskHeight[i], outputBlock: {
+                    var copy = state.diskHeight
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(diskHeight: copy))
                 })
             ])
 
             let bladeSection = SectionModel(title: "Blade", fields: [
-                InputFieldModel(title: "Count", inputBlock: {
-                    return String(state.bladeCount[i])
-                }, outputBlock: {
-                    if let value = Int($0) {
-                        var copy = state.bladeCount
-                        copy[i] = value
-                        callback.send(state.changeValues(bladeCount: copy))
-                    }
+                integerField(title: "Count", input: state.bladeCount[i], outputBlock: {
+                    var copy = state.bladeCount
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(bladeCount: copy))
                 }),
-                InputFieldModel(title: "Inner Radius", inputBlock: {
-                    return String(state.bladeInnerRadius[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.bladeInnerRadius
-                        copy[i] = value
-                        callback.send(state.changeValues(bladeInnerRadius: copy))
-                    }
+                floatField(title: "Inner Radius", input: state.bladeInnerRadius[i], outputBlock: {
+                    var copy = state.bladeInnerRadius
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(bladeInnerRadius: copy))
                 }),
-                InputFieldModel(title: "Outer Radius", inputBlock: {
-                    return String(state.bladeOuterRadius[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.bladeOuterRadius
-                        copy[i] = value
-                        callback.send(state.changeValues(bladeOuterRadius: copy))
-                    }
+                floatField(title: "Outer Radius", input: state.bladeOuterRadius[i], outputBlock: {
+                    var copy = state.bladeOuterRadius
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(bladeOuterRadius: copy))
                 }),
-                InputFieldModel(title: "Width", inputBlock: {
-                    return String(state.bladeWidth[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.bladeWidth
-                        copy[i] = value
-                        callback.send(state.changeValues(bladeWidth: copy))
-                    }
+                floatField(title: "Width", input: state.bladeWidth[i], outputBlock: {
+                    var copy = state.bladeWidth
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(bladeWidth: copy))
                 }),
-                InputFieldModel(title: "Height", inputBlock: {
-                    return String(state.bladeHeight[i])
-                }, outputBlock: {
-                    if let value = Float($0) {
-                        var copy = state.bladeHeight
-                        copy[i] = value
-                        callback.send(state.changeValues(bladeHeight: copy))
-                    }
+                floatField(title: "Height", input: state.bladeHeight[i], outputBlock: {
+                    var copy = state.bladeHeight
+                    copy[i] = $0
+                    stateSubject.send(state.changeValues(bladeHeight: copy))
                 })
             ])
 
@@ -173,7 +127,7 @@ class ControlModel {
                 maxValue: Int(state.tankDiameter * 0.5),
                 active: state.transEnableXY,
                 input: state.transPanXY,
-                outputBlock: { callback.send(state.changeValues(transPanXY: $1, transEnableXY: $0)) }
+                outputBlock: { stateSubject.send(state.changeValues(transPanXY: $1, transEnableXY: $0)) }
             ),
             PlaneInputModel(
                 title: "YZ Plane",
@@ -181,7 +135,7 @@ class ControlModel {
                 maxValue: Int(state.tankDiameter * 0.5),
                 active: state.transEnableYZ,
                 input: state.transPanYZ,
-                outputBlock: { callback.send(state.changeValues(transPanYZ: $1, transEnableYZ: $0)) }
+                outputBlock: { stateSubject.send(state.changeValues(transPanYZ: $1, transEnableYZ: $0)) }
             ),
             PlaneInputModel(
                 title: "XZ Plane",
@@ -189,7 +143,7 @@ class ControlModel {
                 maxValue: Int(state.tankHeight * 0.5),
                 active: state.transEnableXZ,
                 input: state.transPanXZ,
-                outputBlock: { callback.send(state.changeValues(transPanXZ: $1, transEnableXZ: $0)) }
+                outputBlock: { stateSubject.send(state.changeValues(transPanXZ: $1, transEnableXZ: $0)) }
             ),
             PlaneInputModel(
                 title: "Rotate Plane",
@@ -197,7 +151,7 @@ class ControlModel {
                 maxValue: 360,
                 active: state.transEnableRotate,
                 input: state.transRotateAngle,
-                outputBlock: { callback.send(state.changeValues(transRotateAngle: $1, transEnableRotate: $0)) }
+                outputBlock: { stateSubject.send(state.changeValues(transRotateAngle: $1, transEnableRotate: $0)) }
             )
         ])
     }
@@ -259,26 +213,34 @@ class InputFieldModel: Identifiable {
 
     var value: Binding<String> {
         return Binding<String>(
-            get: { return self.inputBlock() }
+            get: { return self.input }
         ) { [weak self] in
-            self?.update(value: $0)
+            self?.outputBlock($0)
         }
     }
 
-    private let acceptableNumbers = "0987654321"
-
-    private let inputBlock: () -> String
+    private let input: String
     private let outputBlock: (String) -> Void
 
-    init(title: String, inputBlock: @escaping () -> String, outputBlock: @escaping (String) -> Void) {
+    init(title: String, input: String, outputBlock: @escaping (String) -> Void) {
         self.title = title
-        self.inputBlock = inputBlock
+        self.input = input
         self.outputBlock = outputBlock
     }
+}
 
-    private func update(value: String) {
-        if value.count > 0, CharacterSet(charactersIn: acceptableNumbers).isSuperset(of: CharacterSet(charactersIn: value)) {
+private  func integerField(title: String, input: Int, outputBlock: @escaping (Int) -> Void) -> InputFieldModel {
+    return InputFieldModel(title: title, input: String(input), outputBlock: {
+        if let value = Int($0) {
             outputBlock(value)
         }
-    }
+    })
+}
+
+private func floatField(title: String, input: Float, outputBlock: @escaping (Float) -> Void) -> InputFieldModel {
+    return InputFieldModel(title: title, input: String(input), outputBlock: {
+        if let value = Float($0) {
+            outputBlock(value)
+        }
+    })
 }

@@ -24,7 +24,7 @@ class Engine: NSObject, ObservableObject {
 
     let actionSubject = PassthroughSubject<EngineAction, Never>()
 
-    private let callback = PassthroughSubject<TurbineState, Never>()
+    private let stateSubject = PassthroughSubject<TurbineState, Never>()
 
     private let grid = SCNNode()
     private let tank = SCNNode()
@@ -79,11 +79,11 @@ class Engine: NSObject, ObservableObject {
         )
 
         self.scene = SCNScene()
-        self.controlModel = ControlModel(state: self.state, callback: callback)
+        self.controlModel = ControlModel(state: self.state, stateSubject: stateSubject)
 
         super.init()
 
-        cancellable = callback.sink { [weak self] value in
+        cancellable = stateSubject.sink { [weak self] value in
             self?.updateState(newState: value)
         }
 
@@ -161,7 +161,7 @@ class Engine: NSObject, ObservableObject {
         let oldState = state
 
         state = newState
-        controlModel = ControlModel(state: newState, callback: callback)
+        controlModel = ControlModel(state: newState, stateSubject: stateSubject)
 
         if newState.impellerCount != oldState.impellerCount {
             changeImpellerCount(newValue: newState.impellerCount, oldValue: oldState.impellerCount)
