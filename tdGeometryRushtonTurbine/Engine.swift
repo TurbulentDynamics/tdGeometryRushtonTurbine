@@ -130,7 +130,7 @@ class Engine: NSObject, ObservableObject {
     }
 
     func loadJson() {
-        actionSubject.send(.pick([], { [weak self] url in
+        actionSubject.send(.pick(["public.json"], { [weak self] url in
             do {
                 self?.updateState(newState: try readTurbineState(url))
             } catch {
