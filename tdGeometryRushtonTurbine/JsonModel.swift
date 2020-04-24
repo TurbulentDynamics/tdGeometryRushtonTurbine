@@ -49,35 +49,35 @@ func saveTurbineState(state: TurbineState, url: URL) throws {
 extension JData {
 
     static func create(_ state: TurbineState) -> JData {
-        var impellers = [String : JImpeller]()
+        var impellers = [Int : JImpeller]()
         for i in 0..<state.impellerCount {
             let blade = JBlade(
                 innerRadius: state.bladeInnerRadius[i],
                 outerRadius: state.bladeOuterRadius[i],
-                bottom: "71.4000015",
+                bottom: 71.4000015,
                 top: state.bladeHeight[i],
                 bladeThickness: state.bladeWidth[i]
             )
 
-            let disk = JDisk(radius: state.diskRadius[i], bottom: "68.6800003", top: state.diskHeight[i])
-            let hub = JHub(radius: state.hubRadius[i], bottom: "71.4000015", top: state.hubHeight[i])
+            let disk = JDisk(radius: state.diskRadius[i], bottom: 68.6800003, top: state.diskHeight[i])
+            let hub = JHub(radius: state.hubRadius[i], bottom: 71.4000015, top: state.hubHeight[i])
 
             let impeller = JImpeller(
                 numBlades: state.bladeCount[i],
                 firstBladeOffset: 0,
-                uav: "0.100000001",
-                blade_tip_angular_vel_w0: "0.00588235306",
+                uav: 0.100000001,
+                blade_tip_angular_vel_w0: 0.00588235306,
                 impeller_position: Int(state.tankDiameter) / (state.impellerCount + 1) * (i + 1),
                 blades: blade,
                 disk: disk,
                 hub: hub
             )
-            impellers[String(i)] = impeller
+            impellers[i] = impeller
         }
 
         let baffle = JBaffle(
             numBaffles: state.baffleCount,
-            firstBaffleOffset: "0.785398185",
+            firstBaffleOffset: 0.785398185,
             innerRadius: state.baffleInnerRadius,
             outerRadius: state.baffleOuterRadius,
             thickness: state.baffleWidth
@@ -88,7 +88,7 @@ extension JData {
         return JData(
             name: "GeometryConfig",
             gridx: state.tankHeight,
-            resolution: "0.699999988",
+            resolution: 0.699999988,
             tankDiameter: state.tankDiameter,
             starting_step: 0,
             impeller_start_angle: 0,
@@ -113,7 +113,7 @@ extension JData {
         var bladeHeight = Array<Float>(repeating: 0, count: data.numImpellers)
 
         data.impeller.forEach {
-            if let key = Int($0) {
+            if let key = Int?($0) {
                 hubRadius[key] = $1.hub.radius
                 hubHeight[key] = $1.hub.top
                 diskRadius[key] = $1.disk.radius
@@ -164,20 +164,20 @@ extension JData {
 private struct JData: Codable {
     var name: String
     var gridx: Float
-    var resolution: String
+    var resolution: Float
     var tankDiameter: Float
     var starting_step: Int
-    var impeller_start_angle: Int
+    var impeller_start_angle: Float
     var impeller_startup_steps_until_normal_speed: Int
     var baffles: JBaffle
     var numImpellers: Int
     var shaft: JShaft
-    var impeller: [String : JImpeller]
+    var impeller: [Int : JImpeller]
 }
 
 private struct JBaffle: Codable {
     var numBaffles: Int
-    var firstBaffleOffset: String
+    var firstBaffleOffset: Float
     var innerRadius: Float
     var outerRadius: Float
     var thickness: Float
@@ -190,8 +190,8 @@ private struct JShaft: Codable {
 private struct JImpeller: Codable {
     var numBlades: Int
     var firstBladeOffset: Int
-    var uav: String
-    var blade_tip_angular_vel_w0: String
+    var uav: Float
+    var blade_tip_angular_vel_w0: Float
     var impeller_position: Int
     var blades: JBlade
     var disk: JDisk
@@ -201,19 +201,19 @@ private struct JImpeller: Codable {
 private struct JBlade: Codable {
     var innerRadius: Float
     var outerRadius: Float
-    var bottom: String
+    var bottom: Float
     var top: Float
     var bladeThickness: Float
 }
 
 private struct JDisk: Codable {
     var radius: Float
-    var bottom: String
+    var bottom: Float
     var top: Float
 }
 
 private struct JHub: Codable {
     var radius: Float
-    var bottom: String
+    var bottom: Float
     var top: Float
 }

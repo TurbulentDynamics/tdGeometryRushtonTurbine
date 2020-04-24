@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		224FDCD8242E503800BD090D /* tdGeometryRushtonTurbineLib in Frameworks */ = {isa = PBXBuildFile; productRef = 224FDCD7242E503800BD090D /* tdGeometryRushtonTurbineLib */; };
 		2C62149423DC2715005B0196 /* RenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62149323DC2715005B0196 /* RenderView.swift */; };
 		2C62149923DC2B8D005B0196 /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62149523DC2B8D005B0196 /* MathUtilities.swift */; };
 		2C62149F23DC2FE4005B0196 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62149E23DC2FE4005B0196 /* Engine.swift */; };
@@ -65,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				224FDCD8242E503800BD090D /* tdGeometryRushtonTurbineLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +156,9 @@
 			dependencies = (
 			);
 			name = tdGeometryRushtonTurbine;
+			packageProductDependencies = (
+				224FDCD7242E503800BD090D /* tdGeometryRushtonTurbineLib */,
+			);
 			productName = tdGeometryRushtonTurbine;
 			productReference = 2CAE9EC123DB8409001FCE5B /* tdGeometryRushtonTurbine.app */;
 			productType = "com.apple.product-type.application";
@@ -204,6 +209,9 @@
 				Base,
 			);
 			mainGroup = 2CAE9EB823DB8409001FCE5B;
+			packageReferences = (
+				224FDCD6242E503800BD090D /* XCRemoteSwiftPackageReference "tdGeometryRushtonTurbineLib" */,
+			);
 			productRefGroup = 2CAE9EC223DB8409001FCE5B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -521,6 +529,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		224FDCD6242E503800BD090D /* XCRemoteSwiftPackageReference "tdGeometryRushtonTurbineLib" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TurbulentDynamics/tdGeometryRushtonTurbineLib.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		224FDCD7242E503800BD090D /* tdGeometryRushtonTurbineLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 224FDCD6242E503800BD090D /* XCRemoteSwiftPackageReference "tdGeometryRushtonTurbineLib" */;
+			productName = tdGeometryRushtonTurbineLib;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CAE9EB923DB8409001FCE5B /* Project object */;
 }
