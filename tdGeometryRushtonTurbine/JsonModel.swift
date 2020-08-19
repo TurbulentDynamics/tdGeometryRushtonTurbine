@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import tdGeometryRushtonTurbineLib
 
 enum GeneralError: Error {
     case security

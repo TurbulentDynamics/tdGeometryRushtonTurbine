@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import tdGeometryRushtonTurbineLib
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -35,7 +36,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self?.window?.rootViewController?.present(controller, animated: true, completion: nil)
             }
         }
-        let contentView = ContentView(engine: engine)
+        
+        let turbine = RushtonTurbine()
+        
+        let contentView = ContentView(engine: engine, turbine: turbine)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

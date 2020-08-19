@@ -1,4 +1,4 @@
-# Turbulent Dynamics Geometry Rushton Turbine
+# Turbulent Dynamics Geometry Rushton Turbine GUI
 
 An iOS application to create the required json file to use as input for a lattice boltzmann cluster applicaiton.
 

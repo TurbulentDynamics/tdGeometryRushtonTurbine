@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import tdGeometryRushtonTurbineLib
 
 struct ContentView: View {
 
     var engine: Engine
+    var turbine: RushtonTurbine
 
     #if targetEnvironment(macCatalyst)
     var body: some View {
@@ -23,7 +25,7 @@ struct ContentView: View {
     }
     #else
     var body: some View {
-        TabBarView(engine: engine)
+        TabBarView(engine: engine, turbine: turbine)
     }
     #endif
 }
@@ -31,7 +33,9 @@ struct ContentView: View {
 struct TabBarView: View {
 
     var engine: Engine
-
+    var turbine: RushtonTurbine
+    
+    
     enum Tab: Int {
         case control, render
     }
@@ -47,9 +51,15 @@ struct TabBarView: View {
             RenderView(engine: engine).tabItem{
                 self.tabItem(text: "Render")
             }.tag(Tab.render)
-            ControlView(engine: engine).tabItem {
+            ControlView(engine: engine, turbine: turbine).tabItem {
                 self.tabItem(text: "Control")
             }.tag(Tab.control)
+
+            NewControlView(turbine: turbine).tabItem {
+                self.tabItem(text: "NewControl")
+            }.tag(Tab.control)
+
+            
         }.edgesIgnoringSafeArea(.top)
     }
 }

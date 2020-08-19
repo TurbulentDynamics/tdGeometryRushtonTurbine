@@ -7,11 +7,14 @@
 //
 
 import SwiftUI
+import tdGeometryRushtonTurbineLib
 
 struct ControlView: View {
 
     @ObservedObject var engine: Engine
+    @ObservedObject var turbine: RushtonTurbine
 
+    
     var body: some View {
         ScrollView {
             VStack {
