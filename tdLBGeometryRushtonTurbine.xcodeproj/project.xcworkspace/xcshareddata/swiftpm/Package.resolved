@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "tdLBApi",
+        "repositoryURL": "https://github.com/turbulentdynamics/tdLBApi.git",
+        "state": {
+          "branch": null,
+          "revision": "55b5693a605da1edb4e2ed3adf1f1e26bad31332",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
