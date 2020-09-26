@@ -6,7 +6,7 @@
 //  Copyright © 2020 Lunar Key. All rights reserved.
 //
 
-import tdGeometryRushtonTurbineLib
+import tdLBGeometryRushtonTurbineLib
 
 
 

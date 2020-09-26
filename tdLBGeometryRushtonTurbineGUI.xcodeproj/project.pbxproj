@@ -24,7 +24,6 @@
 		2CAE9ED123DB840A001FCE5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */; };
 		2CAE9EDC23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */; };
 		D670A63D24DC431900FE91FE /* NewControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670A63C24DC431900FE91FE /* NewControlView.swift */; };
-		D6FFF5D6250D4E4B00DE33F9 /* tdLBGeometryRushtonTurbineLib in Frameworks */ = {isa = PBXBuildFile; productRef = D6FFF5D5250D4E4B00DE33F9 /* tdLBGeometryRushtonTurbineLib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,7 @@
 		2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePrimitive.swift; sourceTree = "<group>"; };
 		2C916AD123E57F2D00A1221E /* TurbineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurbineState.swift; sourceTree = "<group>"; };
 		2CA7EFC923E9F2F9005C30CA /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
-		2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tdLBGeometryRushtonTurbine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tdLBGeometryRushtonTurbineGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAE9EC423DB8409001FCE5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CAE9EC623DB8409001FCE5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2CAE9EC823DB8409001FCE5B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,13 +55,11 @@
 		2CAE9ECD23DB840A001FCE5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2CAE9ED023DB840A001FCE5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CAE9ED223DB840A001FCE5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CAE9ED723DB840A001FCE5B /* tdLBGeometryRushtonTurbineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tdLBGeometryRushtonTurbineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CAE9ED723DB840A001FCE5B /* tdLBGeometryRushtonTurbineGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tdLBGeometryRushtonTurbineGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryRushtonTurbineTests.swift; sourceTree = "<group>"; };
 		2CAE9EDD23DB840A001FCE5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tdGeometryRushtonTurbine.entitlements; sourceTree = "<group>"; };
 		D670A63C24DC431900FE91FE /* NewControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewControlView.swift; sourceTree = "<group>"; };
-		D670A63E24DC4D0900FE91FE /* tdGeometryRushtonTurbineLib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tdGeometryRushtonTurbineLib; path = ../tdGeometryRushtonTurbineLib; sourceTree = "<group>"; };
-		D6FFF5D3250D4DFF00DE33F9 /* tdLBGeometryRushtonTurbineLib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tdLBGeometryRushtonTurbineLib; path = ../tdLBGeometryRushtonTurbineLib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6FFF5D6250D4E4B00DE33F9 /* tdLBGeometryRushtonTurbineLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +87,6 @@
 				2CAE9EC323DB8409001FCE5B /* tdGeometryRushtonTurbine */,
 				2CAE9EDA23DB840A001FCE5B /* tdGeometryRushtonTurbineTests */,
 				2CAE9EC223DB8409001FCE5B /* Products */,
-				D670A63E24DC4D0900FE91FE /* tdGeometryRushtonTurbineLib */,
-				D6FFF5D3250D4DFF00DE33F9 /* tdLBGeometryRushtonTurbineLib */,
 				D6FFF5D4250D4E4B00DE33F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -100,8 +94,8 @@
 		2CAE9EC223DB8409001FCE5B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbine.app */,
-				2CAE9ED723DB840A001FCE5B /* tdLBGeometryRushtonTurbineTests.xctest */,
+				2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */,
+				2CAE9ED723DB840A001FCE5B /* tdLBGeometryRushtonTurbineGUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,9 +152,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2CAE9EC023DB8409001FCE5B /* tdLBGeometryRushtonTurbine */ = {
+		2CAE9EC023DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CAE9EE023DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbine" */;
+			buildConfigurationList = 2CAE9EE023DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbineGUI" */;
 			buildPhases = (
 				2CAE9EBD23DB8409001FCE5B /* Sources */,
 				2CAE9EBE23DB8409001FCE5B /* Frameworks */,
@@ -170,17 +164,16 @@
 			);
 			dependencies = (
 			);
-			name = tdLBGeometryRushtonTurbine;
+			name = tdLBGeometryRushtonTurbineGUI;
 			packageProductDependencies = (
-				D6FFF5D5250D4E4B00DE33F9 /* tdLBGeometryRushtonTurbineLib */,
 			);
 			productName = tdGeometryRushtonTurbine;
-			productReference = 2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbine.app */;
+			productReference = 2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2CAE9ED623DB840A001FCE5B /* tdLBGeometryRushtonTurbineTests */ = {
+		2CAE9ED623DB840A001FCE5B /* tdLBGeometryRushtonTurbineGUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CAE9EE323DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbineTests" */;
+			buildConfigurationList = 2CAE9EE323DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbineGUITests" */;
 			buildPhases = (
 				2CAE9ED323DB840A001FCE5B /* Sources */,
 				2CAE9ED423DB840A001FCE5B /* Frameworks */,
@@ -191,9 +184,9 @@
 			dependencies = (
 				2CAE9ED923DB840A001FCE5B /* PBXTargetDependency */,
 			);
-			name = tdLBGeometryRushtonTurbineTests;
+			name = tdLBGeometryRushtonTurbineGUITests;
 			productName = tdGeometryRushtonTurbineTests;
-			productReference = 2CAE9ED723DB840A001FCE5B /* tdLBGeometryRushtonTurbineTests.xctest */;
+			productReference = 2CAE9ED723DB840A001FCE5B /* tdLBGeometryRushtonTurbineGUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -216,7 +209,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2CAE9EBC23DB8409001FCE5B /* Build configuration list for PBXProject "tdLBGeometryRushtonTurbine" */;
+			buildConfigurationList = 2CAE9EBC23DB8409001FCE5B /* Build configuration list for PBXProject "tdLBGeometryRushtonTurbineGUI" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -232,8 +225,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2CAE9EC023DB8409001FCE5B /* tdLBGeometryRushtonTurbine */,
-				2CAE9ED623DB840A001FCE5B /* tdLBGeometryRushtonTurbineTests */,
+				2CAE9EC023DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI */,
+				2CAE9ED623DB840A001FCE5B /* tdLBGeometryRushtonTurbineGUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -292,7 +285,7 @@
 /* Begin PBXTargetDependency section */
 		2CAE9ED923DB840A001FCE5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2CAE9EC023DB8409001FCE5B /* tdLBGeometryRushtonTurbine */;
+			target = 2CAE9EC023DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI */;
 			targetProxy = 2CAE9ED823DB840A001FCE5B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -491,7 +484,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tdLBGeometryRushtonTurbine.app/tdLBGeometryRushtonTurbine";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tdLBGeometryRushtonTurbineGUI.app/tdLBGeometryRushtonTurbineGUI";
 			};
 			name = Debug;
 		};
@@ -513,14 +506,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tdLBGeometryRushtonTurbine.app/tdLBGeometryRushtonTurbine";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tdLBGeometryRushtonTurbineGUI.app/tdLBGeometryRushtonTurbineGUI";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2CAE9EBC23DB8409001FCE5B /* Build configuration list for PBXProject "tdLBGeometryRushtonTurbine" */ = {
+		2CAE9EBC23DB8409001FCE5B /* Build configuration list for PBXProject "tdLBGeometryRushtonTurbineGUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CAE9EDE23DB840A001FCE5B /* Debug */,
@@ -529,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CAE9EE023DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbine" */ = {
+		2CAE9EE023DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbineGUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CAE9EE123DB840A001FCE5B /* Debug */,
@@ -538,7 +531,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CAE9EE323DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbineTests" */ = {
+		2CAE9EE323DB840A001FCE5B /* Build configuration list for PBXNativeTarget "tdLBGeometryRushtonTurbineGUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CAE9EE423DB840A001FCE5B /* Debug */,
@@ -559,13 +552,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D6FFF5D5250D4E4B00DE33F9 /* tdLBGeometryRushtonTurbineLib */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = tdLBGeometryRushtonTurbineLib;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CAE9EB923DB8409001FCE5B /* Project object */;
 }
