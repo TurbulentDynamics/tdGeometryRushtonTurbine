@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import tdGeometryRushtonTurbine
 
 class tdGeometryRushtonTurbineTests: XCTestCase {
 

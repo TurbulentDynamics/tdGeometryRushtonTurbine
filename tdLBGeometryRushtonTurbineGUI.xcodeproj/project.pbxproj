@@ -14,7 +14,7 @@
 		2C6214A723DDC99D005B0196 /* ControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6214A623DDC99D005B0196 /* ControlModel.swift */; };
 		2C916ACE23E55DC500A1221E /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916ACD23E55DC500A1221E /* Style.swift */; };
 		2C916AD023E56E9500A1221E /* ScenePrimitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */; };
-		2C916AD223E57F2D00A1221E /* TurbineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916AD123E57F2D00A1221E /* TurbineState.swift */; };
+		2C916AD223E57F2D00A1221E /* RushtonTurbineRenderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C916AD123E57F2D00A1221E /* RushtonTurbineRenderState.swift */; };
 		2CA7EFCA23E9F2F9005C30CA /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7EFC923E9F2F9005C30CA /* JsonModel.swift */; };
 		2CAE9EC523DB8409001FCE5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EC423DB8409001FCE5B /* AppDelegate.swift */; };
 		2CAE9EC723DB8409001FCE5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EC623DB8409001FCE5B /* SceneDelegate.swift */; };
@@ -24,6 +24,22 @@
 		2CAE9ED123DB840A001FCE5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */; };
 		2CAE9EDC23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */; };
 		D670A63D24DC431900FE91FE /* NewControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670A63C24DC431900FE91FE /* NewControlView.swift */; };
+		FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */; };
+		FA1257FF2520589700AE74CB /* ShaftNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257FE2520589700AE74CB /* ShaftNode.swift */; };
+		FA125804252074E000AE74CB /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA125803252074E000AE74CB /* Bindable.swift */; };
+		FA12580A2520751300AE74CB /* BindableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1258092520751300AE74CB /* BindableArray.swift */; };
+		FA12580E2520755400AE74CB /* ImpellerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12580D2520755400AE74CB /* ImpellerNode.swift */; };
+		FA12581225207AAC00AE74CB /* DiskNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12581125207AAC00AE74CB /* DiskNode.swift */; };
+		FA12582125208B2200AE74CB /* tdLBGeometryRushtonTurbineLib in Frameworks */ = {isa = PBXBuildFile; productRef = FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */; };
+		FACBEFC425201E38009C22C3 /* Engine+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFC325201E38009C22C3 /* Engine+JSON.swift */; };
+		FACBEFCA25201E9A009C22C3 /* Engine+Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFC925201E9A009C22C3 /* Engine+Plane.swift */; };
+		FACBEFCE25201EF0009C22C3 /* Engine+Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFCD25201EF0009C22C3 /* Engine+Tank.swift */; };
+		FACBEFD225201F46009C22C3 /* Engine+Shaft.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFD125201F46009C22C3 /* Engine+Shaft.swift */; };
+		FACBEFD625201F9E009C22C3 /* Engine+Hub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFD525201F9E009C22C3 /* Engine+Hub.swift */; };
+		FACBEFDA25202062009C22C3 /* Engine+TransPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFD925202062009C22C3 /* Engine+TransPan.swift */; };
+		FACBEFDE25202130009C22C3 /* Engine+Baffles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFDD25202130009C22C3 /* Engine+Baffles.swift */; };
+		FACBEFE22520217F009C22C3 /* Engine+Blades.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFE12520217F009C22C3 /* Engine+Blades.swift */; };
+		FACBEFE6252021BF009C22C3 /* Engine+Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFE5252021BF009C22C3 /* Engine+Disk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +61,7 @@
 		2C6214A623DDC99D005B0196 /* ControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlModel.swift; sourceTree = "<group>"; };
 		2C916ACD23E55DC500A1221E /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePrimitive.swift; sourceTree = "<group>"; };
-		2C916AD123E57F2D00A1221E /* TurbineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurbineState.swift; sourceTree = "<group>"; };
+		2C916AD123E57F2D00A1221E /* RushtonTurbineRenderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushtonTurbineRenderState.swift; sourceTree = "<group>"; };
 		2CA7EFC923E9F2F9005C30CA /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tdLBGeometryRushtonTurbineGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAE9EC423DB8409001FCE5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +76,21 @@
 		2CAE9EDD23DB840A001FCE5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tdGeometryRushtonTurbine.entitlements; sourceTree = "<group>"; };
 		D670A63C24DC431900FE91FE /* NewControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewControlView.swift; sourceTree = "<group>"; };
+		FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushtonTurbineNode.swift; sourceTree = "<group>"; };
+		FA1257FE2520589700AE74CB /* ShaftNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaftNode.swift; sourceTree = "<group>"; };
+		FA125803252074E000AE74CB /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		FA1258092520751300AE74CB /* BindableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableArray.swift; sourceTree = "<group>"; };
+		FA12580D2520755400AE74CB /* ImpellerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpellerNode.swift; sourceTree = "<group>"; };
+		FA12581125207AAC00AE74CB /* DiskNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskNode.swift; sourceTree = "<group>"; };
+		FACBEFC325201E38009C22C3 /* Engine+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+JSON.swift"; sourceTree = "<group>"; };
+		FACBEFC925201E9A009C22C3 /* Engine+Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Plane.swift"; sourceTree = "<group>"; };
+		FACBEFCD25201EF0009C22C3 /* Engine+Tank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Tank.swift"; sourceTree = "<group>"; };
+		FACBEFD125201F46009C22C3 /* Engine+Shaft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Shaft.swift"; sourceTree = "<group>"; };
+		FACBEFD525201F9E009C22C3 /* Engine+Hub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Hub.swift"; sourceTree = "<group>"; };
+		FACBEFD925202062009C22C3 /* Engine+TransPan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+TransPan.swift"; sourceTree = "<group>"; };
+		FACBEFDD25202130009C22C3 /* Engine+Baffles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Baffles.swift"; sourceTree = "<group>"; };
+		FACBEFE12520217F009C22C3 /* Engine+Blades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Blades.swift"; sourceTree = "<group>"; };
+		FACBEFE5252021BF009C22C3 /* Engine+Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Disk.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA12582125208B2200AE74CB /* tdLBGeometryRushtonTurbineLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +141,7 @@
 				2C6214A623DDC99D005B0196 /* ControlModel.swift */,
 				2C6214A223DD737C005B0196 /* ControlView.swift */,
 				D670A63C24DC431900FE91FE /* NewControlView.swift */,
-				2C62149E23DC2FE4005B0196 /* Engine.swift */,
+				FACBEFC225201E09009C22C3 /* Engine */,
 				2CAE9ED223DB840A001FCE5B /* Info.plist */,
 				2CA7EFC923E9F2F9005C30CA /* JsonModel.swift */,
 				2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */,
@@ -120,7 +152,7 @@
 				2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */,
 				2C916ACD23E55DC500A1221E /* Style.swift */,
 				2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */,
-				2C916AD123E57F2D00A1221E /* TurbineState.swift */,
+				2C916AD123E57F2D00A1221E /* RushtonTurbineRenderState.swift */,
 			);
 			path = tdGeometryRushtonTurbine;
 			sourceTree = "<group>";
@@ -149,6 +181,45 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA1257F725204AE300AE74CB /* RushtonTurbineNode */ = {
+			isa = PBXGroup;
+			children = (
+				FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */,
+				FA1257FE2520589700AE74CB /* ShaftNode.swift */,
+				FA12580D2520755400AE74CB /* ImpellerNode.swift */,
+				FA12581125207AAC00AE74CB /* DiskNode.swift */,
+			);
+			path = RushtonTurbineNode;
+			sourceTree = "<group>";
+		};
+		FA125802252074CA00AE74CB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FA125803252074E000AE74CB /* Bindable.swift */,
+				FA1258092520751300AE74CB /* BindableArray.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		FACBEFC225201E09009C22C3 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				FA125802252074CA00AE74CB /* Protocols */,
+				FA1257F725204AE300AE74CB /* RushtonTurbineNode */,
+				2C62149E23DC2FE4005B0196 /* Engine.swift */,
+				FACBEFC325201E38009C22C3 /* Engine+JSON.swift */,
+				FACBEFC925201E9A009C22C3 /* Engine+Plane.swift */,
+				FACBEFCD25201EF0009C22C3 /* Engine+Tank.swift */,
+				FACBEFD125201F46009C22C3 /* Engine+Shaft.swift */,
+				FACBEFD525201F9E009C22C3 /* Engine+Hub.swift */,
+				FACBEFD925202062009C22C3 /* Engine+TransPan.swift */,
+				FACBEFDD25202130009C22C3 /* Engine+Baffles.swift */,
+				FACBEFE12520217F009C22C3 /* Engine+Blades.swift */,
+				FACBEFE5252021BF009C22C3 /* Engine+Disk.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,6 +237,7 @@
 			);
 			name = tdLBGeometryRushtonTurbineGUI;
 			packageProductDependencies = (
+				FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */,
 			);
 			productName = tdGeometryRushtonTurbine;
 			productReference = 2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */;
@@ -219,7 +291,7 @@
 			);
 			mainGroup = 2CAE9EB823DB8409001FCE5B;
 			packageReferences = (
-				D6FFF5D0250D4DF100DE33F9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */,
+				FA12581F25208B2200AE74CB /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */,
 			);
 			productRefGroup = 2CAE9EC223DB8409001FCE5B /* Products */;
 			projectDirPath = "";
@@ -257,14 +329,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C62149F23DC2FE4005B0196 /* Engine.swift in Sources */,
-				2C916AD223E57F2D00A1221E /* TurbineState.swift in Sources */,
+				FACBEFD225201F46009C22C3 /* Engine+Shaft.swift in Sources */,
+				FA12581225207AAC00AE74CB /* DiskNode.swift in Sources */,
+				2C916AD223E57F2D00A1221E /* RushtonTurbineRenderState.swift in Sources */,
+				FACBEFD625201F9E009C22C3 /* Engine+Hub.swift in Sources */,
 				2CAE9EC523DB8409001FCE5B /* AppDelegate.swift in Sources */,
+				FACBEFC425201E38009C22C3 /* Engine+JSON.swift in Sources */,
 				2CAE9EC723DB8409001FCE5B /* SceneDelegate.swift in Sources */,
+				FACBEFDE25202130009C22C3 /* Engine+Baffles.swift in Sources */,
+				FA12580A2520751300AE74CB /* BindableArray.swift in Sources */,
+				FACBEFE6252021BF009C22C3 /* Engine+Disk.swift in Sources */,
 				D670A63D24DC431900FE91FE /* NewControlView.swift in Sources */,
+				FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */,
 				2C62149423DC2715005B0196 /* RenderView.swift in Sources */,
 				2CAE9EC923DB8409001FCE5B /* ContentView.swift in Sources */,
+				FACBEFDA25202062009C22C3 /* Engine+TransPan.swift in Sources */,
+				FA1257FF2520589700AE74CB /* ShaftNode.swift in Sources */,
+				FACBEFCA25201E9A009C22C3 /* Engine+Plane.swift in Sources */,
 				2C6214A323DD737C005B0196 /* ControlView.swift in Sources */,
+				FA12580E2520755400AE74CB /* ImpellerNode.swift in Sources */,
+				FACBEFE22520217F009C22C3 /* Engine+Blades.swift in Sources */,
 				2C62149923DC2B8D005B0196 /* MathUtilities.swift in Sources */,
+				FACBEFCE25201EF0009C22C3 /* Engine+Tank.swift in Sources */,
+				FA125804252074E000AE74CB /* Bindable.swift in Sources */,
 				2C916ACE23E55DC500A1221E /* Style.swift in Sources */,
 				2CA7EFCA23E9F2F9005C30CA /* JsonModel.swift in Sources */,
 				2C916AD023E56E9500A1221E /* ScenePrimitive.swift in Sources */,
@@ -426,7 +513,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = D77CH63CLG;
+				DEVELOPMENT_TEAM = 45GG36PCEV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = tdGeometryRushtonTurbine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -450,7 +537,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = D77CH63CLG;
+				DEVELOPMENT_TEAM = 45GG36PCEV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = tdGeometryRushtonTurbine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -472,7 +559,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G38VA7FQQ2;
+				DEVELOPMENT_TEAM = 45GG36PCEV;
 				INFOPLIST_FILE = tdGeometryRushtonTurbineTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -494,7 +581,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G38VA7FQQ2;
+				DEVELOPMENT_TEAM = 45GG36PCEV;
 				INFOPLIST_FILE = tdGeometryRushtonTurbineTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -543,15 +630,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D6FFF5D0250D4DF100DE33F9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */ = {
+		FA12581F25208B2200AE74CB /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git";
+			repositoryURL = "git@github.com:ay42/tdLBGeometryRushtonTurbineLib.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA12581F25208B2200AE74CB /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */;
+			productName = tdLBGeometryRushtonTurbineLib;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CAE9EB923DB8409001FCE5B /* Project object */;
 }

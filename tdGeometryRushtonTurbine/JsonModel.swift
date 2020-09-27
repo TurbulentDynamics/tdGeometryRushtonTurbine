@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import tdGeometryRushtonTurbineLib
+import tdLBGeometryRushtonTurbineLib
 
 enum GeneralError: Error {
     case security
 }
 
-func readTurbineState(_ url: URL) throws -> TurbineState {
+func readTurbineState(_ url: URL) throws -> RushtonTurbineRenderState {
     guard url.startAccessingSecurityScopedResource() else {
         throw GeneralError.security
     }
@@ -28,7 +28,7 @@ func readTurbineState(_ url: URL) throws -> TurbineState {
     return JData.create(object)
 }
 
-func saveTurbineState(state: TurbineState, url: URL) throws {
+func saveTurbineState(state: RushtonTurbineRenderState, url: URL) throws {
     guard url.startAccessingSecurityScopedResource() else {
         throw GeneralError.security
     }
@@ -49,59 +49,58 @@ func saveTurbineState(state: TurbineState, url: URL) throws {
 
 extension JData {
 
-    static func create(_ state: TurbineState) -> JData {
-        var impellers = [Int : JImpeller]()
-        for i in 0..<state.impellerCount {
+    static func create(_ state: RushtonTurbineRenderState) -> JData {
+        let impellers: [(Int, JImpeller)] = state.turbine.impeller.enumerated().map { (index, impeller) -> (Int, JImpeller) in
             let blade = JBlade(
-                innerRadius: state.bladeInnerRadius[i],
-                outerRadius: state.bladeOuterRadius[i],
+                innerRadius: Float(impeller.value.blades.innerRadius),
+                outerRadius: Float(impeller.value.blades.outerRadius),
                 bottom: 71.4000015,
-                top: state.bladeHeight[i],
-                bladeThickness: state.bladeWidth[i]
+                top: Float(impeller.value.blades.height),
+                bladeThickness: Float(impeller.value.blades.thickness)
             )
 
-            let disk = JDisk(radius: state.diskRadius[i], bottom: 68.6800003, top: state.diskHeight[i])
-            let hub = JHub(radius: state.hubRadius[i], bottom: 71.4000015, top: state.hubHeight[i])
+            let disk = JDisk(radius: Float(impeller.value.disk.radius), bottom: 68.6800003, top: Float(impeller.value.disk.height))
+            let hub = JHub(radius: Float(impeller.value.hub.radius), bottom: 71.4000015, top: Float(impeller.value.hub.height))
 
             let impeller = JImpeller(
-                numBlades: state.bladeCount[i],
+                numBlades: impeller.value.numBlades,
                 firstBladeOffset: 0,
                 uav: 0.100000001,
                 blade_tip_angular_vel_w0: 0.00588235306,
-                impeller_position: Int(state.tankDiameter) / (state.impellerCount + 1) * (i + 1),
+                impeller_position: Int(state.turbine.tankDiameter) / (state.turbine.numImpellers + 1) * (index + 1),
                 blades: blade,
                 disk: disk,
                 hub: hub
             )
-            impellers[i] = impeller
+            return (index, impeller)
         }
 
         let baffle = JBaffle(
-            numBaffles: state.baffleCount,
+            numBaffles: state.turbine.baffles.numBaffles,
             firstBaffleOffset: 0.785398185,
-            innerRadius: state.baffleInnerRadius,
-            outerRadius: state.baffleOuterRadius,
-            thickness: state.baffleWidth
+            innerRadius: Float(state.turbine.baffles.innerRadius),
+            outerRadius: Float(state.turbine.baffles.outerRadius),
+            thickness: Float(state.turbine.baffles.thickness)
         )
 
-        let shaft = JShaft(radius: state.shaftRadius)
+        let shaft = JShaft(radius: Float(state.turbine.shaft.radius))
 
         return JData(
             name: "GeometryConfig",
-            gridx: state.tankHeight,
+            gridx: Float(state.turbine.tankHeight),
             resolution: 0.699999988,
-            tankDiameter: state.tankDiameter,
+            tankDiameter: Float(state.turbine.tankDiameter),
             starting_step: 0,
             impeller_start_angle: 0,
             impeller_startup_steps_until_normal_speed: 0,
             baffles: baffle,
-            numImpellers: state.impellerCount,
+            numImpellers: state.turbine.numImpellers,
             shaft: shaft,
-            impeller: impellers
+            impeller: Dictionary(uniqueKeysWithValues: impellers)
         )
     }
 
-    static func create(_ data: JData) -> TurbineState {
+    static func create(_ data: JData) -> RushtonTurbineRenderState {
         var hubRadius = Array<Float>(repeating: 0, count: data.numImpellers)
         var hubHeight = Array<Float>(repeating: 0, count: data.numImpellers)
         var diskRadius = Array<Float>(repeating: 0, count: data.numImpellers)
@@ -127,28 +126,12 @@ extension JData {
             }
         }
 
-        return TurbineState(
+        return RushtonTurbineRenderState(
+            turbine: RushtonTurbine(),
             canvasWidth: 0,
             canvasHeight: 0,
-            tankDiameter: data.tankDiameter,
-            tankHeight: data.gridx,
-            shaftRadius: data.shaft.radius,
             kernelAutoRotation: false,
             kernelRotationDir: "clockwise",
-            baffleCount: data.baffles.numBaffles,
-            baffleInnerRadius: data.baffles.innerRadius,
-            baffleOuterRadius: data.baffles.outerRadius,
-            baffleWidth: data.baffles.thickness,
-            impellerCount: data.numImpellers,
-            hubRadius: hubRadius,
-            hubHeight: hubHeight,
-            diskRadius: diskRadius,
-            diskHeight: diskHeight,
-            bladeCount: bladeCount,
-            bladeInnerRadius: bladeInnerRadius,
-            bladeOuterRadius: bladeOuterRadius,
-            bladeWidth: bladeWidth,
-            bladeHeight: bladeHeight,
             transPanXY: 0,
             transPanYZ: 0,
             transPanXZ: 0,
