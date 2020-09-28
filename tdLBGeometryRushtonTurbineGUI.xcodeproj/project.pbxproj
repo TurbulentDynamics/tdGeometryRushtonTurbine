@@ -30,7 +30,7 @@
 		FA12580A2520751300AE74CB /* BindableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1258092520751300AE74CB /* BindableArray.swift */; };
 		FA12580E2520755400AE74CB /* ImpellerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12580D2520755400AE74CB /* ImpellerNode.swift */; };
 		FA12581225207AAC00AE74CB /* DiskNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12581125207AAC00AE74CB /* DiskNode.swift */; };
-		FA12582125208B2200AE74CB /* tdLBGeometryRushtonTurbineLib in Frameworks */ = {isa = PBXBuildFile; productRef = FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */; };
+		FA3A851025229D01009F57A9 /* tdLBGeometryRushtonTurbineLib in Frameworks */ = {isa = PBXBuildFile; productRef = FA3A850F25229D01009F57A9 /* tdLBGeometryRushtonTurbineLib */; };
 		FA4C1ACA25219B6C0056A3C9 /* TankNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AC925219B6C0056A3C9 /* TankNode.swift */; };
 		FA4C1ACE25219C710056A3C9 /* BaffleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1ACD25219C710056A3C9 /* BaffleNode.swift */; };
 		FA4C1AD22521AC3D0056A3C9 /* TransPanMeshCenterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AD12521AC3D0056A3C9 /* TransPanMeshCenterNode.swift */; };
@@ -102,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA12582125208B2200AE74CB /* tdLBGeometryRushtonTurbineLib in Frameworks */,
+				FA3A851025229D01009F57A9 /* tdLBGeometryRushtonTurbineLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +259,7 @@
 			);
 			name = tdLBGeometryRushtonTurbineGUI;
 			packageProductDependencies = (
-				FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */,
+				FA3A850F25229D01009F57A9 /* tdLBGeometryRushtonTurbineLib */,
 			);
 			productName = tdGeometryRushtonTurbine;
 			productReference = 2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */;
@@ -313,7 +313,7 @@
 			);
 			mainGroup = 2CAE9EB823DB8409001FCE5B;
 			packageReferences = (
-				FA12581F25208B2200AE74CB /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */,
+				FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */,
 			);
 			productRefGroup = 2CAE9EC223DB8409001FCE5B /* Products */;
 			projectDirPath = "";
@@ -537,7 +537,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 45GG36PCEV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = tdGeometryRushtonTurbine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -561,7 +561,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 45GG36PCEV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = tdGeometryRushtonTurbine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -654,20 +654,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA12581F25208B2200AE74CB /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */ = {
+		FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:ay42/tdLBGeometryRushtonTurbineLib.git";
+			repositoryURL = "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */ = {
+		FA3A850F25229D01009F57A9 /* tdLBGeometryRushtonTurbineLib */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA12581F25208B2200AE74CB /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */;
+			package = FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */;
 			productName = tdLBGeometryRushtonTurbineLib;
 		};
 /* End XCSwiftPackageProductDependency section */
