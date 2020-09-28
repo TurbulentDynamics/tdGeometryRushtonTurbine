@@ -16,7 +16,7 @@ struct ContentView: View {
     #if targetEnvironment(macCatalyst)
     var body: some View {
         NavigationView {
-            NewControlView(turbine: turbine)
+            NewControlView(state: engine.state)
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
             RenderView(engine: engine)
@@ -49,7 +49,7 @@ struct TabBarView: View {
                 self.tabItem(text: "Render")
             }.tag(Tab.render)
 
-            NewControlView(turbine: turbine).tabItem {
+            NewControlView(state: engine.state).tabItem {
                 self.tabItem(text: "NewControl")
             }.tag(Tab.control)
 

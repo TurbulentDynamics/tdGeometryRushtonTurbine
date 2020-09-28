@@ -31,15 +31,17 @@
 		FA12580E2520755400AE74CB /* ImpellerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12580D2520755400AE74CB /* ImpellerNode.swift */; };
 		FA12581225207AAC00AE74CB /* DiskNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12581125207AAC00AE74CB /* DiskNode.swift */; };
 		FA12582125208B2200AE74CB /* tdLBGeometryRushtonTurbineLib in Frameworks */ = {isa = PBXBuildFile; productRef = FA12582025208B2200AE74CB /* tdLBGeometryRushtonTurbineLib */; };
+		FA4C1ACA25219B6C0056A3C9 /* TankNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AC925219B6C0056A3C9 /* TankNode.swift */; };
+		FA4C1ACE25219C710056A3C9 /* BaffleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1ACD25219C710056A3C9 /* BaffleNode.swift */; };
+		FA4C1AD22521AC3D0056A3C9 /* TransPanMeshCenterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AD12521AC3D0056A3C9 /* TransPanMeshCenterNode.swift */; };
+		FA4C1AD82521AD710056A3C9 /* TransPanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AD72521AD710056A3C9 /* TransPanNode.swift */; };
+		FA4C1ADD2521B7CA0056A3C9 /* ImpellerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1ADC2521B7CA0056A3C9 /* ImpellerControl.swift */; };
+		FA4C1AE32521B82C0056A3C9 /* TankControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AE22521B82C0056A3C9 /* TankControl.swift */; };
+		FA4C1AE72521B8550056A3C9 /* BaffleControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AE62521B8550056A3C9 /* BaffleControl.swift */; };
+		FA4C1AEB2521B8AF0056A3C9 /* TransPanControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AEA2521B8AF0056A3C9 /* TransPanControl.swift */; };
+		FA4C1AF22521B9B30056A3C9 /* SliderControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AF12521B9B30056A3C9 /* SliderControl.swift */; };
+		FA5BABF3252128620033A0E9 /* BladeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BABF2252128620033A0E9 /* BladeNode.swift */; };
 		FACBEFC425201E38009C22C3 /* Engine+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFC325201E38009C22C3 /* Engine+JSON.swift */; };
-		FACBEFCA25201E9A009C22C3 /* Engine+Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFC925201E9A009C22C3 /* Engine+Plane.swift */; };
-		FACBEFCE25201EF0009C22C3 /* Engine+Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFCD25201EF0009C22C3 /* Engine+Tank.swift */; };
-		FACBEFD225201F46009C22C3 /* Engine+Shaft.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFD125201F46009C22C3 /* Engine+Shaft.swift */; };
-		FACBEFD625201F9E009C22C3 /* Engine+Hub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFD525201F9E009C22C3 /* Engine+Hub.swift */; };
-		FACBEFDA25202062009C22C3 /* Engine+TransPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFD925202062009C22C3 /* Engine+TransPan.swift */; };
-		FACBEFDE25202130009C22C3 /* Engine+Baffles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFDD25202130009C22C3 /* Engine+Baffles.swift */; };
-		FACBEFE22520217F009C22C3 /* Engine+Blades.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFE12520217F009C22C3 /* Engine+Blades.swift */; };
-		FACBEFE6252021BF009C22C3 /* Engine+Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFE5252021BF009C22C3 /* Engine+Disk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,15 +84,17 @@
 		FA1258092520751300AE74CB /* BindableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableArray.swift; sourceTree = "<group>"; };
 		FA12580D2520755400AE74CB /* ImpellerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpellerNode.swift; sourceTree = "<group>"; };
 		FA12581125207AAC00AE74CB /* DiskNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskNode.swift; sourceTree = "<group>"; };
+		FA4C1AC925219B6C0056A3C9 /* TankNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankNode.swift; sourceTree = "<group>"; };
+		FA4C1ACD25219C710056A3C9 /* BaffleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaffleNode.swift; sourceTree = "<group>"; };
+		FA4C1AD12521AC3D0056A3C9 /* TransPanMeshCenterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransPanMeshCenterNode.swift; sourceTree = "<group>"; };
+		FA4C1AD72521AD710056A3C9 /* TransPanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransPanNode.swift; sourceTree = "<group>"; };
+		FA4C1ADC2521B7CA0056A3C9 /* ImpellerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpellerControl.swift; sourceTree = "<group>"; };
+		FA4C1AE22521B82C0056A3C9 /* TankControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankControl.swift; sourceTree = "<group>"; };
+		FA4C1AE62521B8550056A3C9 /* BaffleControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaffleControl.swift; sourceTree = "<group>"; };
+		FA4C1AEA2521B8AF0056A3C9 /* TransPanControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransPanControl.swift; sourceTree = "<group>"; };
+		FA4C1AF12521B9B30056A3C9 /* SliderControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderControl.swift; sourceTree = "<group>"; };
+		FA5BABF2252128620033A0E9 /* BladeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BladeNode.swift; sourceTree = "<group>"; };
 		FACBEFC325201E38009C22C3 /* Engine+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+JSON.swift"; sourceTree = "<group>"; };
-		FACBEFC925201E9A009C22C3 /* Engine+Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Plane.swift"; sourceTree = "<group>"; };
-		FACBEFCD25201EF0009C22C3 /* Engine+Tank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Tank.swift"; sourceTree = "<group>"; };
-		FACBEFD125201F46009C22C3 /* Engine+Shaft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Shaft.swift"; sourceTree = "<group>"; };
-		FACBEFD525201F9E009C22C3 /* Engine+Hub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Hub.swift"; sourceTree = "<group>"; };
-		FACBEFD925202062009C22C3 /* Engine+TransPan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+TransPan.swift"; sourceTree = "<group>"; };
-		FACBEFDD25202130009C22C3 /* Engine+Baffles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Baffles.swift"; sourceTree = "<group>"; };
-		FACBEFE12520217F009C22C3 /* Engine+Blades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Blades.swift"; sourceTree = "<group>"; };
-		FACBEFE5252021BF009C22C3 /* Engine+Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+Disk.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +144,7 @@
 				2CAE9EC823DB8409001FCE5B /* ContentView.swift */,
 				2C6214A623DDC99D005B0196 /* ControlModel.swift */,
 				2C6214A223DD737C005B0196 /* ControlView.swift */,
-				D670A63C24DC431900FE91FE /* NewControlView.swift */,
+				FA4C1ADB2521B5D70056A3C9 /* ControlView */,
 				FACBEFC225201E09009C22C3 /* Engine */,
 				2CAE9ED223DB840A001FCE5B /* Info.plist */,
 				2CA7EFC923E9F2F9005C30CA /* JsonModel.swift */,
@@ -152,7 +156,6 @@
 				2C916ACF23E56E9500A1221E /* ScenePrimitive.swift */,
 				2C916ACD23E55DC500A1221E /* Style.swift */,
 				2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */,
-				2C916AD123E57F2D00A1221E /* RushtonTurbineRenderState.swift */,
 			);
 			path = tdGeometryRushtonTurbine;
 			sourceTree = "<group>";
@@ -188,6 +191,11 @@
 				FA1257FE2520589700AE74CB /* ShaftNode.swift */,
 				FA12580D2520755400AE74CB /* ImpellerNode.swift */,
 				FA12581125207AAC00AE74CB /* DiskNode.swift */,
+				FA5BABF2252128620033A0E9 /* BladeNode.swift */,
+				FA4C1AC925219B6C0056A3C9 /* TankNode.swift */,
+				FA4C1ACD25219C710056A3C9 /* BaffleNode.swift */,
+				FA4C1AD12521AC3D0056A3C9 /* TransPanMeshCenterNode.swift */,
+				FA4C1AD72521AD710056A3C9 /* TransPanNode.swift */,
 			);
 			path = RushtonTurbineNode;
 			sourceTree = "<group>";
@@ -201,21 +209,35 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		FA4C1ADB2521B5D70056A3C9 /* ControlView */ = {
+			isa = PBXGroup;
+			children = (
+				FA4C1AF02521B95E0056A3C9 /* Elements */,
+				D670A63C24DC431900FE91FE /* NewControlView.swift */,
+				FA4C1ADC2521B7CA0056A3C9 /* ImpellerControl.swift */,
+				FA4C1AE22521B82C0056A3C9 /* TankControl.swift */,
+				FA4C1AE62521B8550056A3C9 /* BaffleControl.swift */,
+				FA4C1AEA2521B8AF0056A3C9 /* TransPanControl.swift */,
+			);
+			path = ControlView;
+			sourceTree = "<group>";
+		};
+		FA4C1AF02521B95E0056A3C9 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				FA4C1AF12521B9B30056A3C9 /* SliderControl.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
 		FACBEFC225201E09009C22C3 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				2C916AD123E57F2D00A1221E /* RushtonTurbineRenderState.swift */,
 				FA125802252074CA00AE74CB /* Protocols */,
 				FA1257F725204AE300AE74CB /* RushtonTurbineNode */,
 				2C62149E23DC2FE4005B0196 /* Engine.swift */,
 				FACBEFC325201E38009C22C3 /* Engine+JSON.swift */,
-				FACBEFC925201E9A009C22C3 /* Engine+Plane.swift */,
-				FACBEFCD25201EF0009C22C3 /* Engine+Tank.swift */,
-				FACBEFD125201F46009C22C3 /* Engine+Shaft.swift */,
-				FACBEFD525201F9E009C22C3 /* Engine+Hub.swift */,
-				FACBEFD925202062009C22C3 /* Engine+TransPan.swift */,
-				FACBEFDD25202130009C22C3 /* Engine+Baffles.swift */,
-				FACBEFE12520217F009C22C3 /* Engine+Blades.swift */,
-				FACBEFE5252021BF009C22C3 /* Engine+Disk.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -329,31 +351,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C62149F23DC2FE4005B0196 /* Engine.swift in Sources */,
-				FACBEFD225201F46009C22C3 /* Engine+Shaft.swift in Sources */,
+				FA4C1AF22521B9B30056A3C9 /* SliderControl.swift in Sources */,
 				FA12581225207AAC00AE74CB /* DiskNode.swift in Sources */,
+				FA4C1AE32521B82C0056A3C9 /* TankControl.swift in Sources */,
 				2C916AD223E57F2D00A1221E /* RushtonTurbineRenderState.swift in Sources */,
-				FACBEFD625201F9E009C22C3 /* Engine+Hub.swift in Sources */,
 				2CAE9EC523DB8409001FCE5B /* AppDelegate.swift in Sources */,
 				FACBEFC425201E38009C22C3 /* Engine+JSON.swift in Sources */,
 				2CAE9EC723DB8409001FCE5B /* SceneDelegate.swift in Sources */,
-				FACBEFDE25202130009C22C3 /* Engine+Baffles.swift in Sources */,
+				FA4C1ACA25219B6C0056A3C9 /* TankNode.swift in Sources */,
 				FA12580A2520751300AE74CB /* BindableArray.swift in Sources */,
-				FACBEFE6252021BF009C22C3 /* Engine+Disk.swift in Sources */,
+				FA4C1AEB2521B8AF0056A3C9 /* TransPanControl.swift in Sources */,
 				D670A63D24DC431900FE91FE /* NewControlView.swift in Sources */,
 				FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */,
+				FA4C1AE72521B8550056A3C9 /* BaffleControl.swift in Sources */,
 				2C62149423DC2715005B0196 /* RenderView.swift in Sources */,
 				2CAE9EC923DB8409001FCE5B /* ContentView.swift in Sources */,
-				FACBEFDA25202062009C22C3 /* Engine+TransPan.swift in Sources */,
 				FA1257FF2520589700AE74CB /* ShaftNode.swift in Sources */,
-				FACBEFCA25201E9A009C22C3 /* Engine+Plane.swift in Sources */,
 				2C6214A323DD737C005B0196 /* ControlView.swift in Sources */,
 				FA12580E2520755400AE74CB /* ImpellerNode.swift in Sources */,
-				FACBEFE22520217F009C22C3 /* Engine+Blades.swift in Sources */,
+				FA4C1ACE25219C710056A3C9 /* BaffleNode.swift in Sources */,
 				2C62149923DC2B8D005B0196 /* MathUtilities.swift in Sources */,
-				FACBEFCE25201EF0009C22C3 /* Engine+Tank.swift in Sources */,
 				FA125804252074E000AE74CB /* Bindable.swift in Sources */,
+				FA4C1AD22521AC3D0056A3C9 /* TransPanMeshCenterNode.swift in Sources */,
+				FA4C1ADD2521B7CA0056A3C9 /* ImpellerControl.swift in Sources */,
 				2C916ACE23E55DC500A1221E /* Style.swift in Sources */,
 				2CA7EFCA23E9F2F9005C30CA /* JsonModel.swift in Sources */,
+				FA5BABF3252128620033A0E9 /* BladeNode.swift in Sources */,
+				FA4C1AD82521AD710056A3C9 /* TransPanNode.swift in Sources */,
 				2C916AD023E56E9500A1221E /* ScenePrimitive.swift in Sources */,
 				2C6214A723DDC99D005B0196 /* ControlModel.swift in Sources */,
 			);

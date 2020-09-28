@@ -10,22 +10,22 @@ import tdLBGeometryRushtonTurbineLib
 
 public class RushtonTurbineRenderState: ObservableObject {
     @Published var turbine: RushtonTurbine
-     
-    var canvasWidth: Float
-    var canvasHeight: Float
+    @Published var canvasWidth: Float
+    @Published var canvasHeight: Float
     
-    var kernelAutoRotation: Bool
-    var kernelRotationDir: String
+    @Published var kernelAutoRotation: Bool
+    @Published var kernelRotationDir: String
 
-    var transPanXY: Int
-    var transPanYZ: Int
-    var transPanXZ: Int
-    var transRotateAngle: Int
-    var transEnableXY: Bool
-    var transEnableYZ: Bool
-    var transEnableXZ: Bool
-    var transEnableImpeller: Bool
-    var transEnableRotate: Bool
+
+    @Published var transPanXY: Int
+    @Published var transPanYZ: Int
+    @Published var transPanXZ: Int
+    @Published var transRotateAngle: Int
+    @Published var transEnableXY: Bool
+    @Published var transEnableYZ: Bool
+    @Published var transEnableXZ: Bool
+    @Published var transEnableImpeller: Bool
+    @Published var transEnableRotate: Bool
     
     
     init(turbine: RushtonTurbine, canvasWidth: Float, canvasHeight: Float, kernelAutoRotation: Bool, kernelRotationDir: String, transPanXY: Int, transPanYZ: Int, transPanXZ: Int, transRotateAngle: Int, transEnableXY: Bool, transEnableYZ: Bool, transEnableXZ: Bool, transEnableImpeller: Bool, transEnableRotate: Bool) {
