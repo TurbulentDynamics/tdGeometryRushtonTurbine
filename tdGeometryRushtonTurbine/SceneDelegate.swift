@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 import Combine
-import tdGeometryRushtonTurbineLib
+import tdLBGeometryRushtonTurbineLib
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,9 +22,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-
+        let turbine = RushtonTurbine()
         // Create the SwiftUI view that provides the window contents.
-        let engine = Engine()
+        let engine = Engine(state: RushtonTurbineRenderState(
+                turbine: turbine,
+                canvasWidth: 50,
+                canvasHeight: 50,
+                kernelAutoRotation: true,
+                kernelRotationDir: "clockwise",
+                transPanXY: 0,
+                transPanYZ: 0,
+                transPanXZ: 0,
+                transRotateAngle: 0,
+                transEnableXY: false,
+                transEnableYZ: false,
+                transEnableXZ: false,
+                transEnableImpeller: false,
+                transEnableRotate: false
+            )
+        )
         engineActionSink = engine.actionSubject.sink { [weak self] action in
             switch action {
             case .pick(let type, let callback):
@@ -37,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
-        let turbine = RushtonTurbine()
+        
         
         let contentView = ContentView(engine: engine, turbine: turbine)
 
