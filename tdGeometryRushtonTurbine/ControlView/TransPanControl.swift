@@ -7,16 +7,23 @@ struct TransPanControl: View {
     
     var body: some View {
         List {
-            Section {
-                Toggle("Enable XY", isOn: $state.transEnableXY)
-                Toggle("Enable YZ", isOn: $state.transEnableYZ)
-                Toggle("Enable XZ", isOn: $state.transEnableXZ)
+            Section(header: Text("XY")) {
+                Toggle("Enable", isOn: $state.transEnableXY)
+            }
+            
+            Section(header: Text("YZ")) {
+                Toggle("Enable", isOn: $state.transEnableYZ)
+            }
+            
+            Section(header: Text("XZ")) {
+                Toggle("Enable", isOn: $state.transEnableXZ)
+            }
+            
+            Section(header: Text("Impeller")) {
+                Toggle("Enable", isOn: $state.transEnableImpeller)
+                Toggle("Rotate", isOn: $state.transEnableRotate)
             }
 
-            Section {
-                Toggle("Enable Impeller", isOn: $state.transEnableImpeller)
-                Toggle("Enable Rotate", isOn: $state.transEnableRotate)
-            }
             
             SliderControl("Rotate Angle", value: $state.transRotateAngle.bindDouble, in: 0...360, output: state.transRotateAngle.description)
         }

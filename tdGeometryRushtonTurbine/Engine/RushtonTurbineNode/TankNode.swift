@@ -12,7 +12,7 @@ class TankNode: SCNNode, Bindable {
     
     init(state: RushtonTurbineRenderState, update: AnyPublisher<Int, Never>) {
         self.state = state
-        self.transPan = TransPanMeshCenterNode(state: state, update: update)
+        self.transPan = TransPanMeshCenterNode(state: state)
         super.init()
         name = "tank"
         
