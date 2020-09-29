@@ -50,7 +50,7 @@ func saveTurbineState(state: RushtonTurbineRenderState, url: URL) throws {
 extension JData {
 
     static func create(_ state: RushtonTurbineRenderState) -> JData {
-        let impellers: [(Int, JImpeller)] = state.turbine.impeller.enumerated().map { (index, impeller) -> (Int, JImpeller) in
+        let impellers: [(Int, JImpeller)] = state.turbine.impellers.enumerated().map { (index, impeller) -> (Int, JImpeller) in
             let blade = JBlade(
                 innerRadius: Float(impeller.value.blades.innerRadius),
                 outerRadius: Float(impeller.value.blades.outerRadius),
@@ -67,7 +67,7 @@ extension JData {
                 firstBladeOffset: 0,
                 uav: 0.100000001,
                 blade_tip_angular_vel_w0: 0.00588235306,
-                impeller_position: Int(state.turbine.tankDiameter) / (state.turbine.numImpellers + 1) * (index + 1),
+                impeller_position: Int(state.turbine.tankDiameter) / (state.turbine.impellers.count + 1) * (index + 1),
                 blades: blade,
                 disk: disk,
                 hub: hub
@@ -94,23 +94,22 @@ extension JData {
             impeller_start_angle: 0,
             impeller_startup_steps_until_normal_speed: 0,
             baffles: baffle,
-            numImpellers: state.turbine.numImpellers,
             shaft: shaft,
             impeller: Dictionary(uniqueKeysWithValues: impellers)
         )
     }
 
     static func create(_ data: JData) -> RushtonTurbineRenderState {
-        var hubRadius = Array<Float>(repeating: 0, count: data.numImpellers)
-        var hubHeight = Array<Float>(repeating: 0, count: data.numImpellers)
-        var diskRadius = Array<Float>(repeating: 0, count: data.numImpellers)
-        var diskHeight = Array<Float>(repeating: 0, count: data.numImpellers)
+        var hubRadius = Array<Float>(repeating: 0, count: data.impeller.count)
+        var hubHeight = Array<Float>(repeating: 0, count: data.impeller.count)
+        var diskRadius = Array<Float>(repeating: 0, count: data.impeller.count)
+        var diskHeight = Array<Float>(repeating: 0, count: data.impeller.count)
 
-        var bladeCount = Array<Int>(repeating: 0, count: data.numImpellers)
-        var bladeInnerRadius = Array<Float>(repeating: 0, count: data.numImpellers)
-        var bladeOuterRadius = Array<Float>(repeating: 0, count: data.numImpellers)
-        var bladeWidth = Array<Float>(repeating: 0, count: data.numImpellers)
-        var bladeHeight = Array<Float>(repeating: 0, count: data.numImpellers)
+        var bladeCount = Array<Int>(repeating: 0, count: data.impeller.count)
+        var bladeInnerRadius = Array<Float>(repeating: 0, count: data.impeller.count)
+        var bladeOuterRadius = Array<Float>(repeating: 0, count: data.impeller.count)
+        var bladeWidth = Array<Float>(repeating: 0, count: data.impeller.count)
+        var bladeHeight = Array<Float>(repeating: 0, count: data.impeller.count)
 
         data.impeller.forEach {
             if let key = Int?($0) {
@@ -154,7 +153,6 @@ private struct JData: Codable {
     var impeller_start_angle: Float
     var impeller_startup_steps_until_normal_speed: Int
     var baffles: JBaffle
-    var numImpellers: Int
     var shaft: JShaft
     var impeller: [Int : JImpeller]
 }

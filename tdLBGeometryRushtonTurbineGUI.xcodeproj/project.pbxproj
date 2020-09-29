@@ -21,7 +21,7 @@
 		2CAE9ECE23DB840A001FCE5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECD23DB840A001FCE5B /* Preview Assets.xcassets */; };
 		2CAE9ED123DB840A001FCE5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */; };
 		2CAE9EDC23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */; };
-		D670A63D24DC431900FE91FE /* NewControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670A63C24DC431900FE91FE /* NewControlView.swift */; };
+		D670A63D24DC431900FE91FE /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670A63C24DC431900FE91FE /* ControlView.swift */; };
 		FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */; };
 		FA1257FF2520589700AE74CB /* ShaftNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257FE2520589700AE74CB /* ShaftNode.swift */; };
 		FA125804252074E000AE74CB /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA125803252074E000AE74CB /* Bindable.swift */; };
@@ -73,7 +73,7 @@
 		2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryRushtonTurbineTests.swift; sourceTree = "<group>"; };
 		2CAE9EDD23DB840A001FCE5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tdGeometryRushtonTurbine.entitlements; sourceTree = "<group>"; };
-		D670A63C24DC431900FE91FE /* NewControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewControlView.swift; sourceTree = "<group>"; };
+		D670A63C24DC431900FE91FE /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushtonTurbineNode.swift; sourceTree = "<group>"; };
 		FA1257FE2520589700AE74CB /* ShaftNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaftNode.swift; sourceTree = "<group>"; };
 		FA125803252074E000AE74CB /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				FA4C1AF02521B95E0056A3C9 /* Elements */,
-				D670A63C24DC431900FE91FE /* NewControlView.swift */,
+				D670A63C24DC431900FE91FE /* ControlView.swift */,
 				FA4C1ADC2521B7CA0056A3C9 /* ImpellerControl.swift */,
 				FA4C1AE22521B82C0056A3C9 /* TankControl.swift */,
 				FA4C1AE62521B8550056A3C9 /* BaffleControl.swift */,
@@ -355,7 +355,7 @@
 				FA4C1ACA25219B6C0056A3C9 /* TankNode.swift in Sources */,
 				FA12580A2520751300AE74CB /* BindableArray.swift in Sources */,
 				FA4C1AEB2521B8AF0056A3C9 /* TransPanControl.swift in Sources */,
-				D670A63D24DC431900FE91FE /* NewControlView.swift in Sources */,
+				D670A63D24DC431900FE91FE /* ControlView.swift in Sources */,
 				FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */,
 				FA4C1AE72521B8550056A3C9 /* BaffleControl.swift in Sources */,
 				2C62149423DC2715005B0196 /* RenderView.swift in Sources */,
