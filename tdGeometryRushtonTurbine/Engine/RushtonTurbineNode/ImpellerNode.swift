@@ -12,6 +12,8 @@ class ImpellerNode: SCNNode, Bindable {
     
     let blades = BindableArray<BladeNode>()
     
+    let transPan = TransPanNode()
+    
     init(impeller: Impeller) {
         self.impeller = impeller
         super.init()
@@ -62,6 +64,8 @@ class ImpellerNode: SCNNode, Bindable {
             },
             onRemove: { $0.removeFromParentNode() }
         )
+        
+        self.addChildNode(transPan)
     }
     
     required init?(coder: NSCoder) {

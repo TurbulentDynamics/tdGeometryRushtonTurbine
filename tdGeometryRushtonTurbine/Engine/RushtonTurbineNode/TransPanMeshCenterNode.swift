@@ -10,7 +10,7 @@ class TransPanMeshCenterNode: SCNNode, Bindable {
     var cancellables = Set<AnyCancellable>()
     let state: RushtonTurbineRenderState
     
-    init(state: RushtonTurbineRenderState, update: AnyPublisher<Int, Never>) {
+    init(state: RushtonTurbineRenderState) {
         self.state = state
         super.init()
         self.name = "transPanCenterMesh"
@@ -33,7 +33,7 @@ class TransPanMeshCenterNode: SCNNode, Bindable {
         meshXZ.bind(\.isHidden, to: self.state.$transEnableXZ.map { !$0 }.eraseToAnyPublisher())
         addChildNode(meshXZ)
         
-        self.bind(\.simdEulerAngles, to: update.map { simdEulerAngle(angle: $0) }.eraseToAnyPublisher())
+        //self.bind(\.simdEulerAngles, to: update.map { simdEulerAngle(angle: $0) }.eraseToAnyPublisher())
     }
     
     required init?(coder: NSCoder) {

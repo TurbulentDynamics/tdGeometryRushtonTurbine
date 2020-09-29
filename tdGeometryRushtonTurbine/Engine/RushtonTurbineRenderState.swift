@@ -16,7 +16,6 @@ public class RushtonTurbineRenderState: ObservableObject {
     @Published var kernelAutoRotation: Bool
     @Published var kernelRotationDir: String
 
-
     @Published var transPanXY: Int
     @Published var transPanYZ: Int
     @Published var transPanXZ: Int

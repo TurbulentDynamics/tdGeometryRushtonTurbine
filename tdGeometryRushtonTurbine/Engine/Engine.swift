@@ -123,11 +123,6 @@ class Engine: NSObject, ObservableObject {
         lightNode.simdPosition = simd_float3(x, y, z) * distance
         scene.rootNode.addChildNode(lightNode)
     }
-//    
-//    func getImpellerPositionY(num: Int, count: Int) -> Float {
-//        let tankHeight = Float(state.turbine.tankHeight)
-//        return tankHeight / -2 + tankHeight / Float(count + 1) * Float(num + 1)
-//    }
 }
 
 extension Engine: SCNSceneRendererDelegate {

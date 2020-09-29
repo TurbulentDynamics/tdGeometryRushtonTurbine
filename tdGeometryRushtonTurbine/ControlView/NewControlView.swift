@@ -18,7 +18,7 @@ extension Int {
     }
 }
 
-struct NewControlView: View {
+struct ControlView: View {
     @State var step = 0
     @ObservedObject var state: RushtonTurbineRenderState
 
