@@ -29,18 +29,3 @@ struct ImpellerControl: View {
         .navigationBarTitle("Impeller")
     }
 }
-
-extension RushtonTurbine {
-    var impellerBinding: Binding<Int> {
-        Binding(get: { self.impeller.count }, set: { newCount in
-            if newCount > self.impeller.count {
-                self.impeller["\(newCount)"] = Impeller(blades: Blades(innerRadius: 50, top: 60, thickness: 5, outerRadius: 110, bottom: 130), uav: 0.7, bladeTipAngularVelW0: 0.1, impellerPosition: 100, disk: Disk(top: 90, bottom: 110, radius: 100), numBlades: 6, firstBladeOffset: 0, hub: Disk(top: 80, bottom: 120, radius: 60))
-            } else {
-                if let key = self.impeller.keys.sorted(by: >).first {
-                    self.impeller[key] = nil
-                }
-                
-            }
-        })
-    }
-}

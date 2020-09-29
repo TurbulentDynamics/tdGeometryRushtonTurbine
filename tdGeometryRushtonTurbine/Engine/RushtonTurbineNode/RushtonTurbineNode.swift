@@ -25,7 +25,7 @@ class RushtonTurbineNode: SCNNode {
         shaft.bind(\.position.y, to: state.turbine.$tankHeight.map({ Float($0 / 2) }).eraseToAnyPublisher())
         self.addChildNode(shaft)
         
-        impellers.bind(\.impeller, to: state.turbine.$impeller.map { $0.map { $0.value } }.eraseToAnyPublisher(), onInsert: { impeller in
+        impellers.bind(\.impeller, to: state.turbine.$impellers.map { $0.map { $0.value } }.eraseToAnyPublisher(), onInsert: { impeller in
             let impellerNode = ImpellerNode(impeller: impeller)
             impellerNode.bind(\.simdEulerAngles, to: update.map { simdEulerAngle(angle: $0) }.eraseToAnyPublisher())
             /// TransPan

@@ -15,8 +15,8 @@
         "repositoryURL": "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git",
         "state": {
           "branch": null,
-          "revision": "0571725919fb2e02b5ca90001fc2c3e16fb90a95",
-          "version": "0.0.2"
+          "revision": "8d227cf15ed985ccf3e52a6298b9a14f8a821c41",
+          "version": "0.0.3"
         }
       }
     ]
