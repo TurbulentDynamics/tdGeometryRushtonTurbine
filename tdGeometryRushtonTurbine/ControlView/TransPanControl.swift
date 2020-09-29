@@ -21,11 +21,11 @@ struct TransPanControl: View {
             
             Section(header: Text("Impeller")) {
                 Toggle("Enable", isOn: $state.transEnableImpeller)
-                Toggle("Rotate", isOn: $state.transEnableRotate)
+                //Toggle("Rotate", isOn: $state.transEnableRotate)
             }
 
             
-            SliderControl("Rotate Angle", value: $state.transRotateAngle.bindDouble, in: 0...360, output: state.transRotateAngle.description)
+            //dSliderControl("Rotate Angle", value: $state.transRotateAngle.bindDouble, in: 0...360, output: state.transRotateAngle.description)
         }
         .navigationBarTitle("Trans Pan")
     }

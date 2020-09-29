@@ -25,9 +25,33 @@ class RushtonTurbineNode: SCNNode {
         shaft.bind(\.position.y, to: state.turbine.$tankHeight.map({ Float($0 / 2) }).eraseToAnyPublisher())
         self.addChildNode(shaft)
         
-        impellers.bind(\.impeller, to: state.turbine.$impeller.map { $0.map { $0.value } }.eraseToAnyPublisher(), onInsert: {
-            let impellerNode = ImpellerNode(impeller: $0)
+        impellers.bind(\.impeller, to: state.turbine.$impeller.map { $0.map { $0.value } }.eraseToAnyPublisher(), onInsert: { impeller in
+            let impellerNode = ImpellerNode(impeller: impeller)
             impellerNode.bind(\.simdEulerAngles, to: update.map { simdEulerAngle(angle: $0) }.eraseToAnyPublisher())
+            /// TransPan
+            
+            impellerNode.transPan.bind(\.boxGeometry.width, to: Just(2).eraseToAnyPublisher())
+            impellerNode.transPan.bind(\.boxGeometry.height, to: Publishers
+                                        .Zip(impeller.blades.$bottom, impeller.blades.$top)
+                                        .map { $0.0 - $0.1 }
+                                        .map { CGFloat($0) * 1.1 }
+                                        .eraseToAnyPublisher())
+            impellerNode.transPan.bind(\.boxGeometry.length, to: state.turbine.$tankDiameter.map({ CGFloat($0 / 2) * 1.1 }).eraseToAnyPublisher())
+            
+            impellerNode.transPan.bind2(\.simdPosition, \.simdEulerAngles, to:
+                Publishers
+                    .CombineLatest4(
+                        Just(0),
+                        state.turbine.$tankDiameter.map({ Float($0 / 2) }).eraseToAnyPublisher(),
+                        Just(0),
+                        Just(1)
+                    )
+                    .map { positionAndEulerAngles(innerRadius: $0.0, outerRadius: $0.1, index: $0.2, count: $0.3) }
+                    .eraseToAnyPublisher()
+            )
+            
+            impellerNode.transPan.bind(\.isHidden, to: state.$transEnableImpeller.map { !$0 }.eraseToAnyPublisher())
+            
             self.addChildNode(impellerNode)
             return impellerNode
         }, onRemove: {
