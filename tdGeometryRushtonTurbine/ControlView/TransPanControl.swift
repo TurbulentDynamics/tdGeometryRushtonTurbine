@@ -25,7 +25,7 @@ struct TransPanControl: View {
             }
 
             
-            //dSliderControl("Rotate Angle", value: $state.transRotateAngle.bindDouble, in: 0...360, output: state.transRotateAngle.description)
+            //SliderControl("Rotate Angle", value: $state.transRotateAngle.bindDouble, in: 0...360, output: state.transRotateAngle.description)
         }
         .navigationBarTitle("Trans Pan")
     }
