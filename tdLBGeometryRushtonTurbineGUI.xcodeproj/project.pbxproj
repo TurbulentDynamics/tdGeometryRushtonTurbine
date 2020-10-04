@@ -22,6 +22,7 @@
 		2CAE9ED123DB840A001FCE5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */; };
 		2CAE9EDC23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */; };
 		D670A63D24DC431900FE91FE /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670A63C24DC431900FE91FE /* ControlView.swift */; };
+		FA0EF56A252A522B00179AFC /* PointCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0EF569252A522A00179AFC /* PointCloudView.swift */; };
 		FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */; };
 		FA1257FF2520589700AE74CB /* ShaftNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257FE2520589700AE74CB /* ShaftNode.swift */; };
 		FA125804252074E000AE74CB /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA125803252074E000AE74CB /* Bindable.swift */; };
@@ -39,6 +40,8 @@
 		FA4C1AEB2521B8AF0056A3C9 /* TransPanControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AEA2521B8AF0056A3C9 /* TransPanControl.swift */; };
 		FA4C1AF22521B9B30056A3C9 /* SliderControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C1AF12521B9B30056A3C9 /* SliderControl.swift */; };
 		FA5BABF3252128620033A0E9 /* BladeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BABF2252128620033A0E9 /* BladeNode.swift */; };
+		FA6AF1EB252A6B1E006C8A74 /* PointCloudNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AF1EA252A6B1E006C8A74 /* PointCloudNode.swift */; };
+		FAB42CFB252A5FDA00FD8749 /* PointCloudEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB42CFA252A5FDA00FD8749 /* PointCloudEngine.swift */; };
 		FACBEFC425201E38009C22C3 /* Engine+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBEFC325201E38009C22C3 /* Engine+JSON.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,7 @@
 		2CAE9EDD23DB840A001FCE5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tdGeometryRushtonTurbine.entitlements; sourceTree = "<group>"; };
 		D670A63C24DC431900FE91FE /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		FA0EF569252A522A00179AFC /* PointCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudView.swift; sourceTree = "<group>"; };
 		FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushtonTurbineNode.swift; sourceTree = "<group>"; };
 		FA1257FE2520589700AE74CB /* ShaftNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaftNode.swift; sourceTree = "<group>"; };
 		FA125803252074E000AE74CB /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 		FA4C1AEA2521B8AF0056A3C9 /* TransPanControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransPanControl.swift; sourceTree = "<group>"; };
 		FA4C1AF12521B9B30056A3C9 /* SliderControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderControl.swift; sourceTree = "<group>"; };
 		FA5BABF2252128620033A0E9 /* BladeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BladeNode.swift; sourceTree = "<group>"; };
+		FA6AF1EA252A6B1E006C8A74 /* PointCloudNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudNode.swift; sourceTree = "<group>"; };
+		FAB42CFA252A5FDA00FD8749 /* PointCloudEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudEngine.swift; sourceTree = "<group>"; };
 		FACBEFC325201E38009C22C3 /* Engine+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+JSON.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,8 +144,9 @@
 				2CAE9EC423DB8409001FCE5B /* AppDelegate.swift */,
 				2CAE9ECA23DB840A001FCE5B /* Assets.xcassets */,
 				2CAE9EC823DB8409001FCE5B /* ContentView.swift */,
-				FA4C1ADB2521B5D70056A3C9 /* ControlView */,
 				FACBEFC225201E09009C22C3 /* Engine */,
+				FA0EF567252A51A600179AFC /* PointCloudView */,
+				FA4C1ADB2521B5D70056A3C9 /* ControlView */,
 				2CAE9ED223DB840A001FCE5B /* Info.plist */,
 				2CA7EFC923E9F2F9005C30CA /* JsonModel.swift */,
 				2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */,
@@ -176,6 +183,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA0EF567252A51A600179AFC /* PointCloudView */ = {
+			isa = PBXGroup;
+			children = (
+				FA0EF569252A522A00179AFC /* PointCloudView.swift */,
+				FAB42CFA252A5FDA00FD8749 /* PointCloudEngine.swift */,
+				FA6AF1EA252A6B1E006C8A74 /* PointCloudNode.swift */,
+			);
+			path = PointCloudView;
 			sourceTree = "<group>";
 		};
 		FA1257F725204AE300AE74CB /* RushtonTurbineNode */ = {
@@ -354,10 +371,13 @@
 				2CAE9EC723DB8409001FCE5B /* SceneDelegate.swift in Sources */,
 				FA4C1ACA25219B6C0056A3C9 /* TankNode.swift in Sources */,
 				FA12580A2520751300AE74CB /* BindableArray.swift in Sources */,
+				FA6AF1EB252A6B1E006C8A74 /* PointCloudNode.swift in Sources */,
+				FAB42CFB252A5FDA00FD8749 /* PointCloudEngine.swift in Sources */,
 				FA4C1AEB2521B8AF0056A3C9 /* TransPanControl.swift in Sources */,
 				D670A63D24DC431900FE91FE /* ControlView.swift in Sources */,
 				FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */,
 				FA4C1AE72521B8550056A3C9 /* BaffleControl.swift in Sources */,
+				FA0EF56A252A522B00179AFC /* PointCloudView.swift in Sources */,
 				2C62149423DC2715005B0196 /* RenderView.swift in Sources */,
 				2CAE9EC923DB8409001FCE5B /* ContentView.swift in Sources */,
 				FA1257FF2520589700AE74CB /* ShaftNode.swift in Sources */,
