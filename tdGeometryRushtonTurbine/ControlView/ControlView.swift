@@ -45,6 +45,7 @@ struct ControlView: View {
             
         }
         .listStyle(GroupedListStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

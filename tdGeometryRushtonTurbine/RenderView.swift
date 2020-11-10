@@ -14,7 +14,7 @@ struct RenderView: UIViewRepresentable {
     var engine: Engine
     
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<RenderView>) {
-        
+            
     }
     
     func makeUIView(context: UIViewRepresentableContext<RenderView>) -> UIView {

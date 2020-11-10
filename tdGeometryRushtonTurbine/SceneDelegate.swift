@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import Combine
 import tdLBGeometryRushtonTurbineLib
+import tdLBGeometry
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -41,6 +42,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 transEnableRotate: false
             )
         )
+        
+        let pointCloudEngine = PointCloudEngine(
+            pointCloud:
+                PointCloud(
+                    vertices: (0..<10000).map {
+                        _ in PointCloudVertex(i: Int.random(in: (-500...500)), j: Int.random(in: (0...1000)), k: Int.random(in: (-500...500)))
+                    },
+                    n: 10000
+                )
+        )
+        
         engineActionSink = engine.actionSubject.sink { [weak self] action in
             switch action {
             case .pick(let type, let callback):
@@ -55,7 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         
-        let contentView = ContentView(engine: engine, turbine: turbine)
+        let contentView = ContentView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
