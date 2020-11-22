@@ -22,21 +22,11 @@ class PointCloudEngine: NSObject, ObservableObject {
 
         let cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.simdPosition = simd_float3(0, 2000, 2000)
+        cameraNode.simdPosition = simd_float3(0, 500, 500)
         cameraNode.simdRotation = simd_float4(1, 0, 0, -30 * Float.pi / 180)
         scene.rootNode.addChildNode(cameraNode)
-//
-//        let light = SCNLight()
-//        light.type = .spot
-//        light.intensity = 500
-//        light.color = UIColor.white
-//
-//        let lightNode = SCNNode()
-//        lightNode.light = light
-//        lightNode.simdPosition = simd_float3(0, 0, 0)
-//        scene.rootNode.addChildNode(lightNode)
         
-        //createPlane()
+        createPlane()
         
         scene.rootNode.addChildNode(pointCloudNode)
     }
