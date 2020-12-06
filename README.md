@@ -5,7 +5,7 @@ An iOS application to create the required json file to use as input for a lattic
 ![iOS Rushton Turbine](docs/Screenshot.png)
 
 
-## Package Structure
+## Package Structure
 
 ![Package Structure](https://github.com/TurbulentDynamics/tdLBApi/blob/master/docs/Package-Structure.png)
 
