@@ -43,10 +43,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )
         )
         
-        let midpoint = RushtonTurbineMidPoint(gridX: 100, gridY: 100, gridZ: 100, uav: 1000).getFixedPointCloud()
+        var midpoint = RushtonTurbineMidPoint(gridX: 100, gridY: 100, gridZ: 100, uav: 1000).getFixedPointCloud()
+        midpoint.append(contentsOf: RushtonTurbineMidPoint(gridX: 100, gridY: 100, gridZ: 100, uav: 1000).getRotatingPointCloud())
+
         
         let pointCloudEngine = PointCloudEngine(
             pointCloud:
+//                PointCloud(
+//                    vertices: (0..<10000).map {
+//                        _ in PointCloudVertex(i: Int.random(in: (-500...500)), j: Int.random(in: (0...1000)), k: Int.random(in: (-500...500)))
+//                    },
+//                    n: 10000
+//                )
                 PointCloud(vertices: midpoint, n: 100 * 100 * 100)
         )
         
