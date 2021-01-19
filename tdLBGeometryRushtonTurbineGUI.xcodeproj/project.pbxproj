@@ -12550,8 +12550,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.3;
+				branch = swift_wrapper;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

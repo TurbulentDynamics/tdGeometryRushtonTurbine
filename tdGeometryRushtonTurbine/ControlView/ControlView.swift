@@ -21,6 +21,21 @@ extension Int {
 struct ControlView: View {
     @State var step = 0
     @ObservedObject var state: RushtonTurbineRenderState
+        
+    func demo() {
+        
+        let rushtonTurbine = RushtonTurbineSwift()
+        let extents = ExtentsSwift()
+        
+        let rushtonTurbineMidPointSwift = RushtonTurbineMidPointSwift(rushtonTurbine: rushtonTurbine, extents: extents)
+        
+        let theta = 0.0
+        
+        rushtonTurbineMidPointSwift.generateFixedGeometry()
+        rushtonTurbineMidPointSwift.generateRotatingGeometry(atTheta: theta)
+        rushtonTurbineMidPointSwift.generateRotatingGeometryNonUpdating()
+        rushtonTurbineMidPointSwift.updateRotatingGeometry(atTheta: theta)
+    }
     
     var body: some View {
         NavigationView {
