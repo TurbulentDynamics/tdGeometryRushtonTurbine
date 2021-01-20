@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/turbulentdynamics/tdLBApi.git",
         "state": {
           "branch": null,
-          "revision": "05fca0bee85d932dff6cd3b1715d88f595447134",
+          "revision": "b37e518737631ce9f1016b064945424eb04ab4ca",
           "version": "0.0.3"
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git",
         "state": {
           "branch": null,
-          "revision": "cfb7234bfd0b30e8f07838d5b77d49dcc9503da9",
+          "revision": "66f2982caf56a0c4f3f030ec145a762e61571e1d",
           "version": "0.0.3"
         }
       }
