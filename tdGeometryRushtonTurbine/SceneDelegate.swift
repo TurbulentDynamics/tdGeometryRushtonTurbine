@@ -23,7 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        let turbine = RushtonTurbine()
+        
+        let turbine = RushtonTurbineReference(gridX: 300)
+        
         // Create the SwiftUI view that provides the window contents.
         let engine = Engine(state: RushtonTurbineRenderState(
                 turbine: turbine,
@@ -43,20 +45,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )
         )
         
-        var midpoint = RushtonTurbineMidPoint(gridX: 100, gridY: 100, gridZ: 100, uav: 1000).getFixedPointCloud()
-        midpoint.append(contentsOf: RushtonTurbineMidPoint(gridX: 100, gridY: 100, gridZ: 100, uav: 1000).getRotatingPointCloud())
+        
+        //Make POINTCLOUD with SWIFT
+//        var RTTurbine = RushtonTurbineMidPoint(turbine: turbine)
+//        RTTurbine.generateFixedGeometry()
+//        RTTurbine.generateRotatingGeometry(atθ: 0)
+//        RTTurbine.generateRotatingNonUpdatingGeometry()
+        
+        
+        //Make POINTCLOUD with CPP
+        let gridX = 300
+        let turbineCPP = RushtonTurbineCPP(gridX: gridX)
+        let ext = ExtentsCPP(x0: 0, x1: gridX, y0: 0, y1: gridX, z0: 0, z1: gridX)
+        
+        
+        let RTTurbine = RushtonTurbineMidPointCPP(rushtonTurbine: turbineCPP, extents: ext)
+        RTTurbine.generateFixedGeometry()
+        RTTurbine.generateRotatingGeometry(atTheta: 0)
+        RTTurbine.generateRotatingNonUpdatingGeometry()
 
         
-        let pointCloudEngine = PointCloudEngine(
-            pointCloud:
-//                PointCloud(
-//                    vertices: (0..<10000).map {
-//                        _ in PointCloudVertex(i: Int.random(in: (-500...500)), j: Int.random(in: (0...1000)), k: Int.random(in: (-500...500)))
-//                    },
-//                    n: 10000
-//                )
-                PointCloud(vertices: midpoint, n: 100 * 100 * 100)
-        )
+        
+        let fixed = RTTurbine.returnFixedGeometry()
+        let rotating = RTTurbine.returnRotatingGeometry()
+        let rotatingNonUpdating = RTTurbine.returnRotatingNonUpdatingGeometry()
+
+
+
+
+        let pc = PointCloud(geomFixed: fixed, geomRotating: rotating, geomRotatingNonUpdating: rotatingNonUpdating)
+        
+        let pointCloudEngine = PointCloudEngine(pointCloud: pc)
         
         engineActionSink = engine.actionSubject.sink { [weak self] action in
             switch action {

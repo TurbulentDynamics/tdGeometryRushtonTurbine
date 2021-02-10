@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "tdLBApi",
-        "repositoryURL": "https://github.com/turbulentdynamics/tdLBApi.git",
+        "repositoryURL": "git@github.com:TurbulentDynamics/tdLBApi",
         "state": {
           "branch": null,
-          "revision": "b37e518737631ce9f1016b064945424eb04ab4ca",
+          "revision": "bd1d3e9cd1dbb6aafd49ecb2e63d881bf04e9192",
           "version": "0.0.3"
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git",
         "state": {
           "branch": null,
-          "revision": "66f2982caf56a0c4f3f030ec145a762e61571e1d",
-          "version": "0.0.3"
+          "revision": "86a18b7581ba659dc9fa58bdf82183eae32755f7",
+          "version": "0.0.4"
         }
       }
     ]

@@ -126,7 +126,7 @@ extension JData {
         }
 
         return RushtonTurbineRenderState(
-            turbine: RushtonTurbine(),
+            turbine: RushtonTurbineReference(gridX: 300),
             canvasWidth: 0,
             canvasHeight: 0,
             kernelAutoRotation: false,

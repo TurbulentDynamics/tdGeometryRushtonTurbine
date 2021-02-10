@@ -21,6 +21,8 @@
 		2CAE9ECE23DB840A001FCE5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECD23DB840A001FCE5B /* Preview Assets.xcassets */; };
 		2CAE9ED123DB840A001FCE5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAE9ECF23DB840A001FCE5B /* LaunchScreen.storyboard */; };
 		2CAE9EDC23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */; };
+		D64A346F25D13BB80055E06B /* tdLBApi in Frameworks */ = {isa = PBXBuildFile; productRef = D64A346E25D13BB80055E06B /* tdLBApi */; };
+		D64A347525D1AEF40055E06B /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A347425D1AEF40055E06B /* PointCloud.swift */; };
 		D670A63D24DC431900FE91FE /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670A63C24DC431900FE91FE /* ControlView.swift */; };
 		FA0EF56A252A522B00179AFC /* PointCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0EF569252A522A00179AFC /* PointCloudView.swift */; };
 		FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */; };
@@ -76,6 +78,7 @@
 		2CAE9EDB23DB840A001FCE5B /* GeometryRushtonTurbineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryRushtonTurbineTests.swift; sourceTree = "<group>"; };
 		2CAE9EDD23DB840A001FCE5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAE9EE623DB8516001FCE5B /* tdGeometryRushtonTurbine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tdGeometryRushtonTurbine.entitlements; sourceTree = "<group>"; };
+		D64A347425D1AEF40055E06B /* PointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 		D670A63C24DC431900FE91FE /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		FA0EF569252A522A00179AFC /* PointCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudView.swift; sourceTree = "<group>"; };
 		FA1257F825204B0800AE74CB /* RushtonTurbineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushtonTurbineNode.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3A851025229D01009F57A9 /* tdLBGeometryRushtonTurbineLib in Frameworks */,
+				D64A346F25D13BB80055E06B /* tdLBApi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +194,7 @@
 			children = (
 				FA0EF569252A522A00179AFC /* PointCloudView.swift */,
 				FAB42CFA252A5FDA00FD8749 /* PointCloudEngine.swift */,
+				D64A347425D1AEF40055E06B /* PointCloud.swift */,
 				FA6AF1EA252A6B1E006C8A74 /* PointCloudNode.swift */,
 			);
 			path = PointCloudView;
@@ -271,6 +276,7 @@
 			name = tdLBGeometryRushtonTurbineGUI;
 			packageProductDependencies = (
 				FA3A850F25229D01009F57A9 /* tdLBGeometryRushtonTurbineLib */,
+				D64A346E25D13BB80055E06B /* tdLBApi */,
 			);
 			productName = tdGeometryRushtonTurbine;
 			productReference = 2CAE9EC123DB8409001FCE5B /* tdLBGeometryRushtonTurbineGUI.app */;
@@ -325,6 +331,7 @@
 			mainGroup = 2CAE9EB823DB8409001FCE5B;
 			packageReferences = (
 				FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */,
+				D64A346D25D13BB80055E06B /* XCRemoteSwiftPackageReference "tdLBApi" */,
 			);
 			productRefGroup = 2CAE9EC223DB8409001FCE5B /* Products */;
 			projectDirPath = "";
@@ -373,6 +380,7 @@
 				FA12580A2520751300AE74CB /* BindableArray.swift in Sources */,
 				FA6AF1EB252A6B1E006C8A74 /* PointCloudNode.swift in Sources */,
 				FAB42CFB252A5FDA00FD8749 /* PointCloudEngine.swift in Sources */,
+				D64A347525D1AEF40055E06B /* PointCloud.swift in Sources */,
 				FA4C1AEB2521B8AF0056A3C9 /* TransPanControl.swift in Sources */,
 				D670A63D24DC431900FE91FE /* ControlView.swift in Sources */,
 				FA1257F925204B0800AE74CB /* RushtonTurbineNode.swift in Sources */,
@@ -672,17 +680,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */ = {
+		D64A346D25D13BB80055E06B /* XCRemoteSwiftPackageReference "tdLBApi" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git";
+			repositoryURL = "git@github.com:TurbulentDynamics/tdLBApi";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.0.3;
 			};
 		};
+		FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:TurbulentDynamics/tdLBGeometryRushtonTurbineLib.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D64A346E25D13BB80055E06B /* tdLBApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D64A346D25D13BB80055E06B /* XCRemoteSwiftPackageReference "tdLBApi" */;
+			productName = tdLBApi;
+		};
 		FA3A850F25229D01009F57A9 /* tdLBGeometryRushtonTurbineLib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA3A850E25229D01009F57A9 /* XCRemoteSwiftPackageReference "tdLBGeometryRushtonTurbineLib" */;

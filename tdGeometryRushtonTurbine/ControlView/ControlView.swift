@@ -8,6 +8,8 @@
 
 import Foundation
 import SwiftUI
+
+import tdLB
 import tdLBGeometryRushtonTurbineLib
 
 extension Int {
@@ -21,6 +23,13 @@ extension Int {
 struct ControlView: View {
     @State var step = 0
     @ObservedObject var state: RushtonTurbineRenderState
+        
+    func demo() {
+
+        
+        
+            
+    }
     
     var body: some View {
         NavigationView {
@@ -41,7 +50,7 @@ struct ControlView: View {
                 ImpellersSection(turbine: state.turbine)
 
             }
-            .navigationBarTitle("Rushton turbine")
+            .navigationBarTitle("Rushton Turbine")
             
         }
         .listStyle(GroupedListStyle())
