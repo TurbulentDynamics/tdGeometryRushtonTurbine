@@ -43,15 +43,19 @@ struct TabBarView: View {
     var body: some View {
 
         ZStack(alignment: Alignment.top) {
-            TabView() {
-                RenderView(engine: engine).tabItem{
-                    self.tabItem(text: "Render")
-                }.tag(Tab.render)
-                
-                PointCloudView(pointCloudEngine: pointCloudEngine).tabItem{
-                    self.tabItem(text: "PointCloud")
-                }.tag(Tab.pointCloud)
+            VStack {
+                TabView() {
+                    RenderView(engine: engine).tabItem{
+                        self.tabItem(text: "Render")
+                    }.tag(Tab.render)
+                    
+                    PointCloudView(pointCloudEngine: pointCloudEngine).tabItem{
+                        self.tabItem(text: "PointCloud")
+                    }.tag(Tab.pointCloud)
 
+                }
+                
+                Spacer(minLength: 50)
             }
             
             SlideOverCard {
