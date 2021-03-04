@@ -17,12 +17,6 @@ struct ContentView: View {
     #if targetEnvironment(macCatalyst)
     var body: some View {
         TabBarView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine)
-//        NavigationView {
-//            ControlView(state: engine.state)
-//                .navigationBarTitle("")
-//                .navigationBarHidden(true)
-//            RenderView(engine: engine)
-//        }
     }
     #else
     var body: some View {
@@ -58,9 +52,6 @@ struct TabBarView: View {
                     self.tabItem(text: "PointCloud")
                 }.tag(Tab.pointCloud)
 
-//                ControlView(state: engine.state).tabItem {
-//                    self.tabItem(text: "Control")
-//                }.tag(Tab.control)
             }
             
             SlideOverCard {
@@ -89,6 +80,16 @@ struct Handle : View {
 struct SlideOverCard<Content: View> : View {
     @GestureState private var dragState = DragState.inactive
     @State var position = CardPosition.top
+    @State var windowSize = CGSize()
+
+    func setWindowSize(_ geometry: GeometryProxy) -> some View {
+        
+        DispatchQueue.main.async {
+            self.windowSize = geometry.size
+        }
+
+      return EmptyView()
+    }
     
     var content: () -> Content
     var body: some View {
@@ -99,6 +100,8 @@ struct SlideOverCard<Content: View> : View {
             .onEnded(onDragEnded)
         
         return GeometryReader { geometry in
+
+            self.setWindowSize(geometry)
             
             HStack {
                 Spacer(minLength: 20)
@@ -110,40 +113,53 @@ struct SlideOverCard<Content: View> : View {
                 }
             }
             .padding(10)
-            .frame(width: geometry.size.width-40, height: UIScreen.main.bounds.height/2)
-            .background(Color.green)
+            .frame(width: geometry.size.width-40, height: 0.75 * geometry.size.height)
+            .background(Color.gray)
             .cornerRadius(10.0)
             .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
-            .offset(y: self.position.rawValue + self.dragState.translation.height)
+            .offset(y: self.getPosition(position: position) + self.dragState.translation.height)
             .animation(self.dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
             .gesture(drag)
-                
+            
             Spacer(minLength: 20)
         }
     }
     }
     
+    func getPosition(position: CardPosition) -> CGFloat {
+        
+        switch(position) {
+        case .top:
+            return 100
+        case .middle:
+            return self.windowSize.height/2
+        case .bottom:
+            return self.windowSize.height - 50
+        }
+        
+    }
+    
     private func onDragEnded(drag: DragGesture.Value) {
         let verticalDirection = drag.predictedEndLocation.y - drag.location.y
-        let cardTopEdgeLocation = self.position.rawValue + drag.translation.height
+        let cardTopEdgeLocation = self.getPosition(position: position) + drag.translation.height
         let positionAbove: CardPosition
         let positionBelow: CardPosition
-        let closestPosition: CardPosition
+        var closestPosition: CardPosition
         
-        if cardTopEdgeLocation <= CardPosition.middle.rawValue {
+        if cardTopEdgeLocation <= self.getPosition(position: CardPosition.middle) {
             positionAbove = .top
             positionBelow = .middle
         } else {
             positionAbove = .middle
             positionBelow = .bottom
         }
-        
-        if (cardTopEdgeLocation - positionAbove.rawValue) < (positionBelow.rawValue - cardTopEdgeLocation) {
+
+        if (cardTopEdgeLocation - self.getPosition(position: positionAbove)) < (self.getPosition(position: positionBelow) - cardTopEdgeLocation) {
             closestPosition = positionAbove
         } else {
             closestPosition = positionBelow
         }
-        
+
         if verticalDirection > 0 {
             self.position = positionBelow
         } else if verticalDirection < 0 {
@@ -154,10 +170,10 @@ struct SlideOverCard<Content: View> : View {
     }
 }
 
-enum CardPosition: CGFloat {
-    case top = 100
-    case middle = 250
-    case bottom = 500
+enum CardPosition {
+    case top
+    case middle
+    case bottom
 }
 
 enum DragState {
