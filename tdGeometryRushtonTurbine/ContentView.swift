@@ -112,7 +112,13 @@ struct SlideOverCard<Content: View> : View {
                 
             Group {
                 VStack {
-                    Handle()
+                    HStack {
+                        Spacer()
+                        Handle()
+                        
+                        Spacer()
+                        minMaxButton()
+                    }
                     self.content()
                 }
             }
@@ -129,7 +135,29 @@ struct SlideOverCard<Content: View> : View {
         }
     }
     }
-    
+    func minMaxButton() -> some View {
+        return HStack {
+            if position != .top {
+                Button(">>>") {
+                    self.position = .top
+                }
+                .foregroundColor(Color.secondary)
+            }
+            if position != .middle {
+                Button(">>") {
+                    self.position = .middle
+                }
+                .foregroundColor(Color.secondary)
+            }
+            if position != .bottom {
+                Button(">") {
+                    self.position = .bottom
+                }
+                .foregroundColor(Color.secondary)
+            }
+        }
+    }
+
     func getPosition(position: CardPosition) -> CGFloat {
         
         switch(position) {
