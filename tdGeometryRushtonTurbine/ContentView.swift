@@ -13,14 +13,15 @@ struct ContentView: View {
     @State var engine: Engine
     @State var pointCloudEngine: PointCloudEngine
     @State var turbine: RushtonTurbine
+    @State var rtTurbine: RushtonTurbineMidPointCPP
 
     #if targetEnvironment(macCatalyst)
     var body: some View {
-        TabBarView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine)
+        TabBarView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine, rtTurbine: rtTurbine)
     }
     #else
     var body: some View {
-        TabBarView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine)
+        TabBarView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine, rtTurbine: rtTurbine)
     }
     #endif
 }
@@ -29,7 +30,8 @@ struct TabBarView: View {
     var engine: Engine
     var pointCloudEngine: PointCloudEngine
     var turbine: RushtonTurbine
-    
+    var rtTurbine: RushtonTurbineMidPointCPP
+
     enum Tab: Int {
         case render, pointCloud, control
     }
@@ -52,6 +54,20 @@ struct TabBarView: View {
                     PointCloudView(pointCloudEngine: pointCloudEngine).tabItem{
                         self.tabItem(text: "PointCloud")
                     }.tag(Tab.pointCloud)
+                    .onAppear {
+                        print("PointCloud activated")
+                        
+                        print("updateRotatingGeometry(atTheta: 1.0)")
+                        rtTurbine.updateRotatingGeometry(atTheta: 1.0)
+
+                        if
+                            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                            let sceneDelegate = windowScene.delegate as? SceneDelegate {
+
+                            sceneDelegate.updateScene(engine: engine, turbine: turbine, rtTurbine: rtTurbine)
+                        }
+                        
+                    }
 
                 }
                 

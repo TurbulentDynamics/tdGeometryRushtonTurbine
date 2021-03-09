@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private var engineActionSink: AnyCancellable?
     private var pickerContext: PickerContext?
+    
+    public var RTTurbine: RushtonTurbineMidPointCPP?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -60,17 +62,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let RTTurbine = RushtonTurbineMidPointCPP(rushtonTurbine: turbineCPP, extents: ext)
+        self.RTTurbine = RTTurbine
+
         RTTurbine.generateFixedGeometry()
         RTTurbine.generateRotatingGeometry(atTheta: 0)
         RTTurbine.generateRotatingNonUpdatingGeometry()
 
-        
-        
         let fixed = RTTurbine.returnFixedGeometry()
         let rotating = RTTurbine.returnRotatingGeometry()
         let rotatingNonUpdating = RTTurbine.returnRotatingNonUpdatingGeometry()
 
 
+        NSLog("PointCloud returned \(rotating.count) points")
 
 
         let pc = PointCloud(geomFixed: fixed, geomRotating: rotating, geomRotatingNonUpdating: rotatingNonUpdating)
@@ -91,7 +94,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         
-        let contentView = ContentView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine)
+        let contentView = ContentView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine, rtTurbine: RTTurbine)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -100,6 +103,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+    }
+    
+    func updateScene(engine: Engine, turbine: RushtonTurbine, rtTurbine: RushtonTurbineMidPointCPP) {
+    
+        if
+            let window = self.window {
+
+            let fixed = rtTurbine.returnFixedGeometry()
+            let rotating = rtTurbine.returnRotatingGeometry()
+            let rotatingNonUpdating = rtTurbine.returnRotatingNonUpdatingGeometry()
+
+            print("PointCloud returned \(rotating.count) rotating points")
+
+            let pc = PointCloud(geomFixed: fixed, geomRotating: rotating, geomRotatingNonUpdating: rotatingNonUpdating)
+
+            let pointCloudEngine = PointCloudEngine(pointCloud: pc)
+
+            let contentView = ContentView(engine: engine, pointCloudEngine: pointCloudEngine, turbine: turbine, rtTurbine: rtTurbine)
+
+            // Use a UIHostingController as window root view controller.
+            if let rootViewController = window.rootViewController as? UIHostingController<ContentView> {
+                rootViewController.rootView = contentView
+            }
+            
+        }
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
