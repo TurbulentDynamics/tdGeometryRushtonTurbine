@@ -46,50 +46,58 @@ struct TabBarView: View {
 
     var body: some View {
 
-        ZStack(alignment: Alignment.top) {
-            VStack {
-                TabView(selection: $selection) {
-                    RenderView(engine: engine).tabItem{
-                        self.tabItem(text: "Render")
-                    }.tag(Tab.render)
-                    
-                    PointCloudView(pointCloudEngine: pointCloudEngine).tabItem{
-                        self.tabItem(text: "PointCloud")
-                    }.tag(Tab.pointCloud)
-                    .onAppear {
-                        print("PointCloud activated")
+        GeometryReader { geometry in
+            
+            ZStack(alignment: Alignment.top) {
+                VStack {
+                    TabView(selection: $selection) {
+                        RenderView(engine: engine).tabItem{
+                        }.tag(Tab.render)
                         
-                        print("updateRotatingGeometry(atTheta: 1.0)")
-                        rtTurbine.updateRotatingGeometry(atTheta: 1.0)
+                        PointCloudView(pointCloudEngine: pointCloudEngine).tabItem{
+                        }.tag(Tab.pointCloud)
+                        .onAppear {
+                            print("PointCloud activated")
+                            
+                            print("updateRotatingGeometry(atTheta: 0.0)")
+                            rtTurbine.updateRotatingGeometry(atTheta: 0.0)
 
-                        if
-                            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                            let sceneDelegate = windowScene.delegate as? SceneDelegate {
+                            if
+                                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                let sceneDelegate = windowScene.delegate as? SceneDelegate {
 
-                            sceneDelegate.updateScene(engine: engine, turbine: turbine, rtTurbine: rtTurbine)
+                                DispatchQueue.main.async {
+                                    sceneDelegate.updateScene(engine: engine, turbine: turbine, rtTurbine: rtTurbine)
+                                }
+                            }
+                            
                         }
-                        
-                    }
 
+                    }
+                    .frame(height: 0.99 * (geometry.size.height))
+                    
+                    Spacer(minLength: 50)
                 }
                 
-                Spacer(minLength: 50)
-            }
-            
-            SlideOverCard {
-                VStack {
-                    HStack {
-                        Button("Render") { self.selection = .render }.foregroundColor(Color.secondary)
-                        Button("PointCloud") { self.selection = .pointCloud }.foregroundColor(Color.secondary)
-                    }
-                    Spacer()
-                    ControlView(state: engine.state).tabItem {
-                        self.tabItem(text: "Control")
+                SlideOverCard {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button("Render") { self.selection = .render }.foregroundColor(Color.secondary)
+                            Spacer()
+                                .frame(width: 50)
+                            Button("PointCloud") { self.selection = .pointCloud }.foregroundColor(Color.secondary)
+                            Spacer()
+                        }
+                        Spacer()
+                        ControlView(state: engine.state).tabItem {
+                            self.tabItem(text: "Control")
+                        }
                     }
                 }
-            }
-            
-        }.edgesIgnoringSafeArea(.top)
+                
+            }.edgesIgnoringSafeArea(.top)
+        }
     }
 }
 
@@ -157,7 +165,7 @@ struct SlideOverCard<Content: View> : View {
         case .top:
             return 0.3 * self.windowSize.height
         case .bottom:
-            return self.windowSize.height - 40
+            return (self.windowSize.height - 120)
         }
         
     }

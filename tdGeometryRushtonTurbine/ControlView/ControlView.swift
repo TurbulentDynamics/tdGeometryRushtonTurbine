@@ -50,8 +50,8 @@ struct ControlView: View {
                 ImpellersSection(turbine: state.turbine)
 
             }
-            .navigationBarTitle("Rushton Turbine")
-            
+            .navigationBarTitle(Text(""), displayMode: .inline)
+            .navigationBarItems(leading: Text("Rushton Turbine").fontWeight(.bold))
         }
         .listStyle(GroupedListStyle())
         .navigationViewStyle(StackNavigationViewStyle())
