@@ -156,8 +156,6 @@ struct SlideOverCard<Content: View> : View {
         switch(position) {
         case .top:
             return 0.3 * self.windowSize.height
-        case .middle:
-            return (1 - 0.70/2) * self.windowSize.height
         case .bottom:
             return self.windowSize.height - 40
         }
@@ -171,13 +169,8 @@ struct SlideOverCard<Content: View> : View {
         let positionBelow: CardPosition
         var closestPosition: CardPosition
         
-        if cardTopEdgeLocation <= self.getPosition(position: CardPosition.middle) {
-            positionAbove = .top
-            positionBelow = .middle
-        } else {
-            positionAbove = .middle
-            positionBelow = .bottom
-        }
+        positionAbove = .top
+        positionBelow = .bottom
 
         if (cardTopEdgeLocation - self.getPosition(position: positionAbove)) < (self.getPosition(position: positionBelow) - cardTopEdgeLocation) {
             closestPosition = positionAbove
@@ -197,7 +190,6 @@ struct SlideOverCard<Content: View> : View {
 
 enum CardPosition {
     case top
-    case middle
     case bottom
 }
 
