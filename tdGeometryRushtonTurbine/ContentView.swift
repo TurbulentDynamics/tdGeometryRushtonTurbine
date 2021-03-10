@@ -36,6 +36,8 @@ struct TabBarView: View {
         case render, pointCloud, control
     }
 
+    @State var selection: Tab = .render
+    
     func tabItem(text: String) -> some View {
         VStack {
             Text(text)
@@ -46,7 +48,7 @@ struct TabBarView: View {
 
         ZStack(alignment: Alignment.top) {
             VStack {
-                TabView() {
+                TabView(selection: $selection) {
                     RenderView(engine: engine).tabItem{
                         self.tabItem(text: "Render")
                     }.tag(Tab.render)
@@ -76,6 +78,10 @@ struct TabBarView: View {
             
             SlideOverCard {
                 VStack {
+                    HStack {
+                        Button("Render") { self.selection = .render }.foregroundColor(Color.secondary)
+                        Button("PointCloud") { self.selection = .pointCloud }.foregroundColor(Color.secondary)
+                    }
                     Spacer()
                     ControlView(state: engine.state).tabItem {
                         self.tabItem(text: "Control")
@@ -123,53 +129,24 @@ struct SlideOverCard<Content: View> : View {
 
             self.setWindowSize(geometry)
             
-            HStack {
-                Spacer(minLength: 20)
-                
-            Group {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Handle()
-                        
-                        Spacer()
-                        minMaxButton()
+                HStack {
+                    
+                Group {
+                    VStack {
+                            Spacer()
+                            Handle()
+                            
+                        self.content()
                     }
-                    self.content()
                 }
-            }
-            .padding(10)
-            .frame(width: geometry.size.width-40, height: 0.75 * geometry.size.height)
-            .background(Color.gray)
-            .cornerRadius(10.0)
-            .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
-            .offset(y: self.getPosition(position: position) + self.dragState.translation.height)
-            .animation(self.dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
-            .gesture(drag)
-            
-            Spacer(minLength: 20)
-        }
-    }
-    }
-    func minMaxButton() -> some View {
-        return HStack {
-            if position != .top {
-                Button(">>>") {
-                    self.position = .top
-                }
-                .foregroundColor(Color.secondary)
-            }
-            if position != .middle {
-                Button(">>") {
-                    self.position = .middle
-                }
-                .foregroundColor(Color.secondary)
-            }
-            if position != .bottom {
-                Button(">") {
-                    self.position = .bottom
-                }
-                .foregroundColor(Color.secondary)
+                .padding(10)
+                .frame(width: geometry.size.width, height: 0.70 * geometry.size.height)
+                .background(Color.gray)
+                .cornerRadius(10.0)
+                .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
+                .offset(y: self.getPosition(position: position) + self.dragState.translation.height)
+                .animation(self.dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
+                .gesture(drag)
             }
         }
     }
@@ -178,11 +155,11 @@ struct SlideOverCard<Content: View> : View {
         
         switch(position) {
         case .top:
-            return 100
+            return 0.3 * self.windowSize.height
         case .middle:
-            return self.windowSize.height/2
+            return (1 - 0.70/2) * self.windowSize.height
         case .bottom:
-            return self.windowSize.height - 50
+            return self.windowSize.height - 40
         }
         
     }
