@@ -76,8 +76,9 @@ struct TabBarView: View {
                     }
                 }
                 
-                SlideOverCard {
+                SlideOverCard() {
                     VStack {
+                        
                         HStack {
                             Spacer()
                             Button("Render") { self.selection = .render }.foregroundColor(Color.secondary)
@@ -86,14 +87,17 @@ struct TabBarView: View {
                             Button("PointCloud") { self.selection = .pointCloud }.foregroundColor(Color.secondary)
                             Spacer()
                         }
+                        
                         Spacer()
-                        ControlView(state: engine.state).tabItem {
-                            self.tabItem(text: "Control")
-                        }
+                        Handle()
+
+                        Spacer()
+                        ControlView(state: engine.state)
                     }
                 }
                 
-            }.edgesIgnoringSafeArea(.top)
+            }
+            .edgesIgnoringSafeArea(.top)
         }
     }
 }
@@ -134,29 +138,20 @@ struct SlideOverCard<Content: View> : View {
 
             self.setWindowSize(geometry)
             
-            HStack {
-                    
-                Group {
-                    VStack {
-                        Spacer()
-                        Handle()
-                            
-                        self.content()
-                    }
-                }
-                .padding(10)
-                .frame(width: geometry.size.width, height: 0.70 * geometry.size.height)
-                .background(Color.gray)
-                .cornerRadius(10.0)
-                .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
-                .offset(y: (position ?? geometry.size.height - 120) + self.dragState.translation.height)
-                .gesture(drag)
-            }
+            self.content()
+                
+            .padding(10)
+            .frame(width: geometry.size.width, height: 0.70 * geometry.size.height)
+            .background(Color.gray)
+            .cornerRadius(10.0)
+            .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
+            .offset(y: (position ?? geometry.size.height - 120) + self.dragState.translation.height)
+            .gesture(drag)
         }
     }
 
     private func onDragEnded(drag: DragGesture.Value) {
-        self.position = drag.location.y
+        self.position = (position ?? windowSize.height - 120) + drag.translation.height
     }
 }
 
@@ -180,14 +175,5 @@ enum DragState {
         case .dragging:
             return true
         }
-    }
-}
-
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
