@@ -33,7 +33,7 @@ struct TabBarView: View {
     var rtTurbine: RushtonTurbineMidPointCPP
 
     enum Tab: Int {
-        case render, pointCloud, control
+        case render, pointCloud
     }
 
     @State var selection: Tab = .render
@@ -50,33 +50,30 @@ struct TabBarView: View {
             
             ZStack(alignment: Alignment.top) {
                 VStack {
-                    TabView(selection: $selection) {
-                        RenderView(engine: engine).tabItem{
-                        }.tag(Tab.render)
-                        
-                        PointCloudView(pointCloudEngine: pointCloudEngine).tabItem{
-                        }.tag(Tab.pointCloud)
-                        .onAppear {
-                            print("PointCloud activated")
-                            
-                            print("updateRotatingGeometry(atTheta: 0.0)")
-                            rtTurbine.updateRotatingGeometry(atTheta: 0.0)
+                    if self.selection == .render {
+                        RenderView(engine: engine)
+                    }
+                    
+                    if self.selection == .pointCloud {
+                        PointCloudView(pointCloudEngine: pointCloudEngine)
+                            .onAppear {
+                                print("PointCloud activated")
 
-                            if
-                                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                                let sceneDelegate = windowScene.delegate as? SceneDelegate {
+                                print("updateRotatingGeometry(atTheta: 0.0)")
+                                rtTurbine.updateRotatingGeometry(atTheta: 0.0)
 
-                                DispatchQueue.main.async {
-                                    sceneDelegate.updateScene(engine: engine, turbine: turbine, rtTurbine: rtTurbine)
+                                if
+                                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                    let sceneDelegate = windowScene.delegate as? SceneDelegate {
+
+                                    DispatchQueue.main.async {
+                                        sceneDelegate.updateScene(engine: engine, turbine: turbine, rtTurbine: rtTurbine)
+                                    }
                                 }
+
                             }
-                            
-                        }
 
                     }
-                    .frame(height: 0.99 * (geometry.size.height))
-                    
-                    Spacer(minLength: 50)
                 }
                 
                 SlideOverCard {
