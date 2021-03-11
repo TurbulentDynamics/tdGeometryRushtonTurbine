@@ -113,7 +113,7 @@ struct Handle : View {
 
 struct SlideOverCard<Content: View> : View {
     @GestureState private var dragState = DragState.inactive
-    @State var position = CardPosition.top
+    @State var position: CGFloat?
     @State var windowSize = CGSize()
 
     func setWindowSize(_ geometry: GeometryProxy) -> some View {
@@ -137,12 +137,12 @@ struct SlideOverCard<Content: View> : View {
 
             self.setWindowSize(geometry)
             
-                HStack {
+            HStack {
                     
                 Group {
                     VStack {
-                            Spacer()
-                            Handle()
+                        Spacer()
+                        Handle()
                             
                         self.content()
                     }
@@ -152,53 +152,15 @@ struct SlideOverCard<Content: View> : View {
                 .background(Color.gray)
                 .cornerRadius(10.0)
                 .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
-                .offset(y: self.getPosition(position: position) + self.dragState.translation.height)
-                .animation(self.dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
+                .offset(y: (position ?? geometry.size.height - 120) + self.dragState.translation.height)
                 .gesture(drag)
             }
         }
     }
 
-    func getPosition(position: CardPosition) -> CGFloat {
-        
-        switch(position) {
-        case .top:
-            return 0.3 * self.windowSize.height
-        case .bottom:
-            return (self.windowSize.height - 120)
-        }
-        
-    }
-    
     private func onDragEnded(drag: DragGesture.Value) {
-        let verticalDirection = drag.predictedEndLocation.y - drag.location.y
-        let cardTopEdgeLocation = self.getPosition(position: position) + drag.translation.height
-        let positionAbove: CardPosition
-        let positionBelow: CardPosition
-        var closestPosition: CardPosition
-        
-        positionAbove = .top
-        positionBelow = .bottom
-
-        if (cardTopEdgeLocation - self.getPosition(position: positionAbove)) < (self.getPosition(position: positionBelow) - cardTopEdgeLocation) {
-            closestPosition = positionAbove
-        } else {
-            closestPosition = positionBelow
-        }
-
-        if verticalDirection > 0 {
-            self.position = positionBelow
-        } else if verticalDirection < 0 {
-            self.position = positionAbove
-        } else {
-            self.position = closestPosition
-        }
+        self.position = drag.location.y
     }
-}
-
-enum CardPosition {
-    case top
-    case bottom
 }
 
 enum DragState {
