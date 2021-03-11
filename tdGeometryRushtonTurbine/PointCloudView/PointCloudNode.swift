@@ -20,10 +20,11 @@ class PointCloudNode: SCNNode {
         
         pointGeometry = SCNGeometry(sources: [pointGeometrySource], elements: [pointCloudElement])
         
-        
         super.init()
         self.name = "pointCloud"
         self.geometry = pointGeometry
+
+        self.simdPosition = simd_float3(x: -298/2, y: 0, z: -298/2)
     }
     
     func updatePoints() {
