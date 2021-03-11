@@ -22,7 +22,7 @@ class PointCloudEngine: NSObject, ObservableObject {
 
         let cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.simdPosition = simd_float3(0, 298*2, 298*3)
+        cameraNode.simdPosition = simd_float3(0, 298*1.8, 298*3)
         cameraNode.simdRotation = simd_float4(1, 0, 0, -30 * Float.pi / 180)
         scene.rootNode.addChildNode(cameraNode)
         

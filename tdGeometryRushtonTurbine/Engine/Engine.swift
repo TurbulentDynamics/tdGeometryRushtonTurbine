@@ -65,7 +65,7 @@ class Engine: NSObject, ObservableObject {
 
         let cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.simdPosition = simd_float3(0, Float(state.turbine.tankHeight) * 2, Float(state.turbine.tankDiameter) * 3)
+        cameraNode.simdPosition = simd_float3(0, Float(state.turbine.tankHeight) * 1.8, Float(state.turbine.tankDiameter) * 3)
         cameraNode.simdRotation = simd_float4(1, 0, 0, -30 * Float.pi / 180)
         scene.rootNode.addChildNode(cameraNode)
 
